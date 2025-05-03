@@ -114,10 +114,8 @@ export default function ChatInterface() {
         },
       ]);
       
-      // Update language if detection changed it
-      if (data.detectedLanguage && data.detectedLanguage !== currentLanguage) {
-        setCurrentLanguage(data.detectedLanguage);
-      }
+      // Do not automatically update the language based on detection
+      // The response will always use the currently selected language
       
       setIsTyping(false);
       // Invalidate chat history query

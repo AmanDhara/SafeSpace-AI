@@ -51,11 +51,25 @@ export default function TextToSpeech({ text, language, autoPlay = true }: TextTo
   }, []);
 
   // Auto-play effect when new text arrives and autoPlay is true
+  const hasAutoPlayed = useRef(false);
+  
+  // Reset hasAutoPlayed when text changes
   useEffect(() => {
-    if (autoPlay && text && availableVoices.length > 0 && !isPlaying) {
-      speak();
+    hasAutoPlayed.current = false;
+  }, [text]);
+
+  useEffect(() => {
+    // Only auto-play once per message when voices are available
+    // Small delay to help ensure reliable playback and reduce stuttering
+    if (autoPlay && text && availableVoices.length > 0 && !isPlaying && !hasAutoPlayed.current) {
+      const timer = setTimeout(() => {
+        hasAutoPlayed.current = true;
+        speak();
+      }, 300);
+      
+      return () => clearTimeout(timer);
     }
-  }, [text, availableVoices, autoPlay]);
+  }, [text, availableVoices, autoPlay, isPlaying]);
 
   const getBestVoiceForLanguage = (lang: string): SpeechSynthesisVoice | null => {
     // Get the preferred language codes for the current language

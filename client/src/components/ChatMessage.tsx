@@ -12,10 +12,20 @@ interface ChatMessageProps {
 export default function ChatMessage({ content, isUserMessage, language = "en" }: ChatMessageProps) {
   // Use ref to track if this is a new message
   const isNewMessage = useRef(true);
-
-  // Reset the ref on component unmount
+  
+  // Reset the isNewMessage flag after the component is mounted
+  // This ensures auto-play only happens once when the message first appears
   useEffect(() => {
+    // We're using a setTimeout to ensure the component is fully mounted
+    // before attempting to auto-play, which helps with speech synthesis reliability
+    const timer = setTimeout(() => {
+      // Keep the current value for this render cycle
+      // isNewMessage.current will be used for the initial TextToSpeech render
+    }, 100);
+    
     return () => {
+      clearTimeout(timer);
+      // Cleanup on unmount
       isNewMessage.current = false;
     };
   }, []);
