@@ -157,7 +157,7 @@ export default function Recommendations() {
         </p>
       </div>
 
-      <Tabs defaultValue="resources" className="w-full mb-8">
+      <Tabs defaultValue="music" className="w-full mb-8">
         <TabsList className="grid w-full grid-cols-3 mb-6">
           <TabsTrigger value="resources">{t("informationResources")}</TabsTrigger>
           <TabsTrigger value="music">{t("musicTherapy")}</TabsTrigger>
@@ -201,16 +201,17 @@ export default function Recommendations() {
         
         <TabsContent value="music">
           <div className="mb-6">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-3">
               <Music className="mr-2 h-6 w-6 text-blue-500" />
               <h2 className="text-2xl font-bold">{t("moodEnhancementMusic")}</h2>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-8">
               {t("musicDescription")}
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <h3 className="text-xl font-medium mb-4">Music For You</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {musicPlaylists.map((playlist, index) => (
               <SpotifyPlaylist 
                 key={index}
@@ -218,6 +219,7 @@ export default function Recommendations() {
                 description={playlist.description}
                 spotifyUrl={playlist.spotifyUrl}
                 tags={playlist.tags}
+                imageUrl={playlist.imageUrl}
               />
             ))}
           </div>
@@ -225,16 +227,17 @@ export default function Recommendations() {
         
         <TabsContent value="breathing">
           <div className="mb-6">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-3">
               <Wind className="mr-2 h-6 w-6 text-blue-500" />
               <h2 className="text-2xl font-bold">{t("breathingExercises")}</h2>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-8">
               {t("breathingDescription")}
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <h3 className="text-xl font-medium mb-4">Exercises For You</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {breathingExercises.map((exercise, index) => (
               <VideoGuide
                 key={index}

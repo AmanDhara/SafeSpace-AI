@@ -20,7 +20,7 @@ type TranslationKeys =
   | "contactInfoDesc" | "phoneSupport" | "emailContact" | "liveChat" | "faq" | "viewAllFAQs"
   | "recommendedResources" | "resourcesDescription" | "informationResources" | "musicTherapy"
   | "breathingExercises" | "moodEnhancementMusic" | "musicDescription" | "listenOnSpotify"
-  | "breathingDescription" | "learnMore" | "personalizedRecommendations" 
+  | "breathingDescription" | "learnMore" | "watchVideo" | "personalizedRecommendations" 
   | "personalizedRecommendationsDescription" | "getPersonalResources"
   | "topicsPageTitle" | "topicsPageDescription" | "searchTopics" | "personalizedGuidanceTitle"
   | "personalizedGuidanceDescription" | "chatWithAI" | "findTherapistButton";

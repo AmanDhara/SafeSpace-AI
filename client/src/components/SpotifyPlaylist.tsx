@@ -1,7 +1,4 @@
-import { useState } from 'react';
-import { Music, Heart, ExternalLink, Share2 } from 'lucide-react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { PlayCircle } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/hooks/use-language";
 
@@ -10,74 +7,56 @@ interface SpotifyPlaylistProps {
   description: string;
   spotifyUrl: string;
   tags: string[];
+  imageUrl?: string;
 }
 
-export default function SpotifyPlaylist({ title, description, spotifyUrl, tags }: SpotifyPlaylistProps) {
-  const [liked, setLiked] = useState(false);
+export default function SpotifyPlaylist({ title, description, spotifyUrl, tags, imageUrl }: SpotifyPlaylistProps) {
   const { t } = useLanguage();
   
-  const handleLike = () => setLiked(!liked);
+  // Generate a gradient background if no image URL provided
+  const gradientColors: Record<string, string> = {
+    "Relaxation & Meditation": "from-blue-400 to-purple-500",
+    "Mood Booster": "from-yellow-400 to-orange-500",
+    "Sleep & Focus": "from-indigo-400 to-purple-600",
+    "Calm & Relaxation": "from-blue-400 to-teal-500",
+    "Focus & Concentration": "from-indigo-400 to-blue-600",
+    "Mood Boost": "from-yellow-400 to-orange-500",
+    "Sleep & Meditation": "from-purple-400 to-indigo-600"
+  };
   
-  // Convert regular Spotify URL to Embed URL
-  const embedUrl = spotifyUrl.replace('https://open.spotify.com/playlist/', 'https://open.spotify.com/embed/playlist/') + '?utm_source=generator';
+  const gradient = gradientColors[title] || "from-blue-400 to-indigo-600";
   
   return (
-    <Card className="overflow-hidden">
-      <CardHeader>
-        <div className="flex items-center gap-2">
-          <Music className="h-5 w-5 text-green-600" />
-          <CardTitle className="text-lg">{title}</CardTitle>
+    <a 
+      href={spotifyUrl} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="block group"
+    >
+      <div className="rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-white">
+        <div 
+          className={`h-44 w-full bg-gradient-to-r ${gradient} flex items-center justify-center relative`}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <PlayCircle className="h-16 w-16 text-white drop-shadow-md" />
+          </div>
+          <span className="text-white text-2xl font-bold text-center px-6 drop-shadow-md">
+            {title}
+          </span>
         </div>
-        <CardDescription>{description}</CardDescription>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {tags.map((tag) => (
-            <Badge key={tag} variant="secondary">{tag}</Badge>
-          ))}
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className="w-full overflow-hidden rounded-md">
-          <iframe 
-            src={embedUrl} 
-            width="100%" 
-            height="380" 
-            frameBorder="0" 
-            allowFullScreen 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-            loading="lazy"
-            title={title}
-          ></iframe>
-        </div>
-      </CardContent>
-      <CardFooter className="border-t pt-4 bg-gray-50">
-        <div className="flex justify-between w-full">
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={handleLike}
-            className={liked ? "bg-pink-50 text-pink-600" : ""}
-          >
-            <Heart className={`mr-1 h-4 w-4 ${liked ? "fill-pink-600" : ""}`} />
-            {liked ? "Liked" : "Like"}
-          </Button>
-          <div className="flex gap-2">
-            <Button 
-              variant="outline" 
-              size="sm"
-              asChild
-            >
-              <a href={spotifyUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="mr-1 h-4 w-4" />
-                {t("listenOnSpotify")}
-              </a>
-            </Button>
-            <Button variant="outline" size="sm">
-              <Share2 className="mr-1 h-4 w-4" />
-              Share
-            </Button>
+        <div className="p-4">
+          <p className="text-sm text-gray-700 mb-3">{description}</p>
+          <div className="flex flex-wrap gap-1">
+            {tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
+            ))}
+          </div>
+          <div className="mt-3 flex items-center text-green-600">
+            <PlayCircle className="h-4 w-4 mr-1" />
+            <span className="text-sm font-medium">{t("listenOnSpotify")}</span>
           </div>
         </div>
-      </CardFooter>
-    </Card>
+      </div>
+    </a>
   );
 }

@@ -31,6 +31,7 @@ export const appTranslations = {
     listenOnSpotify: "Listen on Spotify",
     breathingDescription: "Deep breathing exercises can help reduce stress, anxiety, and promote relaxation. Follow these guided videos to learn different breathing techniques.",
     learnMore: "Learn more",
+    watchVideo: "Watch Video",
     personalizedRecommendations: "Personalized Recommendations",
     personalizedRecommendationsDescription: "Get resources tailored to your specific needs and interests. Our AI will analyze your preferences and suggest the most relevant books, videos, and podcasts.",
     getPersonalResources: "Get My Personal Resources",
