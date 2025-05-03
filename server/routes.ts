@@ -5,8 +5,11 @@ import { chatRequestSchema } from "@shared/schema";
 import { detectLanguage } from "./lib/languageDetect";
 import { generateAIResponse } from "./lib/openai";
 import { v4 as uuidv4 } from "uuid";
+import { setupAuth } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup authentication routes
+  setupAuth(app);
   // API route for chat
   app.post("/api/chat", async (req, res) => {
     try {
