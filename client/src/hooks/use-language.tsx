@@ -4,7 +4,7 @@ import { getText, getAllTranslations, appTranslations } from "@/lib/translations
 
 // Define all possible translation keys
 type TranslationKeys = 
-  | "home" | "chat" | "recommendations" | "therapists" | "helpContact" | "signIn" | "signUp" | "logOut"
+  | "home" | "chat" | "topics" | "recommendations" | "therapists" | "helpContact" | "signIn" | "signUp" | "logOut"
   | "welcome" | "welcomeMessage" | "startConversation" | "keyFeatures" | "aiChatSupport" | "aiChatDescription"
   | "voiceInteraction" | "voiceDescription" | "multilingualSupport" | "multilingualDescription"
   | "quickAccess" | "recentConversations" | "recentConversationsDesc" | "viewConversations"
@@ -21,7 +21,9 @@ type TranslationKeys =
   | "recommendedResources" | "resourcesDescription" | "informationResources" | "musicTherapy"
   | "breathingExercises" | "moodEnhancementMusic" | "musicDescription" | "listenOnSpotify"
   | "breathingDescription" | "learnMore" | "personalizedRecommendations" 
-  | "personalizedRecommendationsDescription" | "getPersonalResources";
+  | "personalizedRecommendationsDescription" | "getPersonalResources"
+  | "topicsPageTitle" | "topicsPageDescription" | "searchTopics" | "personalizedGuidanceTitle"
+  | "personalizedGuidanceDescription" | "chatWithAI" | "findTherapistButton";
 
 type TranslationType = Record<TranslationKeys, string>;
 

@@ -7,6 +7,15 @@ export const appTranslations = {
     recommendations: "Recommendations",
     therapists: "Therapists",
     helpContact: "Help & Contact",
+    
+    // Topics Page
+    topicsPageTitle: "Mental Health Topics",
+    topicsPageDescription: "Explore a wide range of mental health topics with tailored resources, exercises, and information. Find specific guidance for your needs or browse to discover new wellness strategies.",
+    searchTopics: "Search topics, symptoms, or concerns...",
+    personalizedGuidanceTitle: "Need Personalized Guidance?",
+    personalizedGuidanceDescription: "Not sure where to start? Our AI assistant can help you identify relevant topics and resources based on your specific situation and needs.",
+    chatWithAI: "Chat with AI Assistant",
+    findTherapistButton: "Find a Therapist",
     signIn: "Sign In",
     signUp: "Sign Up",
     logOut: "Log Out",

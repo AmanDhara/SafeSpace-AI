@@ -68,7 +68,7 @@ export default function Navbar() {
                     : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                Topics
+                {t("topics")}
               </Link>
               <Link 
                 href="/recommendations" 
