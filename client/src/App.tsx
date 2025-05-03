@@ -14,6 +14,18 @@ import Therapists from "@/pages/therapists";
 import Recommendations from "@/pages/recommendations";
 import HelpContact from "@/pages/help-contact";
 
+// Lazy load components
+import { lazy, Suspense } from 'react';
+const TopicsPage = lazy(() => import('./pages/topics'));
+const TopicDetailsPage = lazy(() => import('./pages/topic-details'));
+
+// Loading Spinner Component
+const LoadingSpinner = () => (
+  <div className="p-10 flex justify-center">
+    <div className="animate-spin h-8 w-8 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+  </div>
+);
+
 function Router() {
   return (
     <Switch>
@@ -23,6 +35,16 @@ function Router() {
       <ProtectedRoute path="/therapists" component={Therapists} />
       <ProtectedRoute path="/recommendations" component={Recommendations} />
       <ProtectedRoute path="/help-contact" component={HelpContact} />
+      <ProtectedRoute path="/topics" component={() => (
+        <Suspense fallback={<LoadingSpinner />}>
+          <TopicsPage />
+        </Suspense>
+      )} />
+      <ProtectedRoute path="/topics/:topicId" component={() => (
+        <Suspense fallback={<LoadingSpinner />}>
+          <TopicDetailsPage />
+        </Suspense>
+      )} />
       <Route component={NotFound} />
     </Switch>
   );
