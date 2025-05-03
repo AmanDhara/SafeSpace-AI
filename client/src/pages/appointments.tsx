@@ -137,10 +137,10 @@ export default function AppointmentsPage() {
                       <Clock className="h-4 w-4 mr-2 text-gray-500" />
                       <span className="text-sm">{formatTime(appointment.time)}</span>
                     </div>
-                    <Badge variant="outline" className="bg-blue-50">Scheduled</Badge>
+                    <Badge variant="outline" className="bg-blue-50">{t("scheduled")}</Badge>
                   </CardContent>
                   <CardFooter className="border-t pt-4 flex justify-between">
-                    <Button variant="outline" size="sm">Reschedule</Button>
+                    <Button variant="outline" size="sm">{t("reschedule")}</Button>
                     <AlertDialog open={appointmentToDelete === index} onOpenChange={() => setAppointmentToDelete(null)}>
                       <AlertDialogTrigger asChild>
                         <Button 
@@ -150,23 +150,27 @@ export default function AppointmentsPage() {
                           onClick={() => setAppointmentToDelete(index)}
                         >
                           <Trash2 className="h-4 w-4 mr-1" />
-                          Cancel
+                          {t("cancelAppointment")}
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
-                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                          <AlertDialogTitle>{t("areYouSure")}</AlertDialogTitle>
                           <AlertDialogDescription>
-                            This will cancel your appointment with {appointment.therapistName} on {formatDate(appointment.date)} at {formatTime(appointment.time)}.
+                            {t("cancelConfirmMessage")
+                              .replace("{therapist}", appointment.therapistName)
+                              .replace("{date}", formatDate(appointment.date))
+                              .replace("{time}", formatTime(appointment.time))
+                            }
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Keep Appointment</AlertDialogCancel>
+                          <AlertDialogCancel>{t("keepAppointment")}</AlertDialogCancel>
                           <AlertDialogAction 
                             className="bg-red-500 hover:bg-red-600"
                             onClick={() => cancelAppointment(index)}
                           >
-                            Yes, Cancel Appointment
+                            {t("yesCancelAppointment")}
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
@@ -178,12 +182,12 @@ export default function AppointmentsPage() {
           ) : (
             <div className="bg-gray-50 rounded-lg p-8 text-center">
               <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">No upcoming appointments</h3>
+              <h3 className="text-lg font-medium mb-2">{t("noUpcomingAppointments")}</h3>
               <p className="text-gray-600 mb-4">
-                You don't have any scheduled therapy sessions yet.
+                {t("noUpcomingDesc")}
               </p>
               <Button onClick={() => window.location.href = '/therapists'}>
-                Book a Session
+                {t("bookSession")}
               </Button>
             </div>
           )}
@@ -207,11 +211,11 @@ export default function AppointmentsPage() {
                       <Clock className="h-4 w-4 mr-2 text-gray-500" />
                       <span className="text-sm">{formatTime(appointment.time)}</span>
                     </div>
-                    <Badge variant="outline" className="bg-gray-100">Completed</Badge>
+                    <Badge variant="outline" className="bg-gray-100">{t("completed")}</Badge>
                   </CardContent>
                   <CardFooter className="border-t pt-4">
                     <Button variant="outline" size="sm" className="w-full">
-                      Book Again
+                      {t("bookAgain")}
                     </Button>
                   </CardFooter>
                 </Card>
@@ -220,12 +224,12 @@ export default function AppointmentsPage() {
           ) : (
             <div className="bg-gray-50 rounded-lg p-8 text-center">
               <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">No past appointments</h3>
+              <h3 className="text-lg font-medium mb-2">{t("noPastAppointments")}</h3>
               <p className="text-gray-600 mb-4">
-                You haven't completed any therapy sessions yet.
+                {t("noPastDesc")}
               </p>
               <Button onClick={() => window.location.href = '/therapists'}>
-                Book Your First Session
+                {t("bookYourFirstSession")}
               </Button>
             </div>
           )}
