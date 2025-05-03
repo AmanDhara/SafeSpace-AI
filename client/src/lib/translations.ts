@@ -554,12 +554,13 @@ export const appTranslations = {
 };
 
 // Function to get text in the current language
-export function getText(key: keyof typeof appTranslations.en, lang = 'en') {
+export function getText(key: string, lang = 'en') {
   const translations = appTranslations[lang as keyof typeof appTranslations] || appTranslations.en;
-  return translations[key as keyof typeof translations] || appTranslations.en[key];
+  // Use type assertion to handle the key access safely
+  return (translations as any)[key] || (appTranslations.en as any)[key] || key;
 }
 
 // Function to get all translations for a language
-export function getAllTranslations(lang = 'en'): typeof appTranslations.en {
+export function getAllTranslations(lang = 'en'): any {
   return appTranslations[lang as keyof typeof appTranslations] || appTranslations.en;
 }
