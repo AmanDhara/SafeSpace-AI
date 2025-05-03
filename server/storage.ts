@@ -1,7 +1,16 @@
-import { users, type User, type InsertUser, type Message, type InsertMessage } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
-import { messages } from "@shared/schema";
+import { 
+  messages, 
+  users, 
+  feedbacks, 
+  type User, 
+  type InsertUser, 
+  type Message, 
+  type InsertMessage, 
+  type Feedback, 
+  type InsertFeedback 
+} from "@shared/schema";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -9,6 +18,7 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   createMessage(message: InsertMessage): Promise<Message>;
   getMessagesBySessionId(sessionId: string): Promise<Message[]>;
+  createFeedback(feedback: InsertFeedback): Promise<Feedback>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -44,6 +54,14 @@ export class DatabaseStorage implements IStorage {
       .from(messages)
       .where(eq(messages.sessionId, sessionId))
       .orderBy(messages.timestamp);
+  }
+  
+  async createFeedback(insertFeedback: InsertFeedback): Promise<Feedback> {
+    const [feedback] = await db
+      .insert(feedbacks)
+      .values(insertFeedback)
+      .returning();
+    return feedback;
   }
 }
 
