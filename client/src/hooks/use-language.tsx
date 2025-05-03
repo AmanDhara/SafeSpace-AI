@@ -24,6 +24,10 @@ type TranslationKeys =
   | "personalizedRecommendationsDescription" | "getPersonalResources"
   | "topicsPageTitle" | "topicsPageDescription" | "searchTopics" | "personalizedGuidanceTitle"
   | "personalizedGuidanceDescription" | "chatWithAI" | "findTherapistButton"
+  // Mood tracking translations
+  | "moodTracker" | "moodTrackerDescription" | "trackMood" | "overallMood" | "moodHistory"
+  | "moodHappy" | "moodCalm" | "moodNeutral" | "moodAnxious" | "moodSad"
+  | "increaseMood" | "decreaseMood"
   // Booking system translations
   | "filterBySpecialization" | "allSpecializations" | "viewYourAppointments" | "bookSession" | "reviewsCount" 
   | "bookSessionWith" | "selectDateAndTime" | "date" | "time" | "cancel" | "confirmBooking" | "missingInformation"

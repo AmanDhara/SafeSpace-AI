@@ -8,6 +8,20 @@ export const appTranslations = {
     therapists: "Therapists",
     helpContact: "Help & Contact",
     
+    // Mood Tracking
+    moodTracker: "Mood Tracker",
+    moodTrackerDescription: "Track and visualize your mood patterns over time",
+    trackMood: "Track Mood",
+    overallMood: "Overall Mood",
+    moodHistory: "Mood History",
+    moodHappy: "Happy",
+    moodCalm: "Calm",
+    moodNeutral: "Neutral",
+    moodAnxious: "Anxious",
+    moodSad: "Sad",
+    increaseMood: "Increase",
+    decreaseMood: "Decrease",
+    
     // Booking system
     filterBySpecialization: "Filter by Specialization",
     allSpecializations: "All Specializations",
@@ -161,6 +175,20 @@ export const appTranslations = {
     signIn: "साइन इन",
     signUp: "साइन अप",
     logOut: "लॉग आउट",
+    
+    // Mood Tracking
+    moodTracker: "मूड ट्रैकर",
+    moodTrackerDescription: "अपने मूड पैटर्न को समय के साथ ट्रैक और विज़ुअलाइज़ करें",
+    trackMood: "मूड ट्रैक करें",
+    overallMood: "समग्र मूड",
+    moodHistory: "मूड इतिहास",
+    moodHappy: "खुश",
+    moodCalm: "शांत",
+    moodNeutral: "तटस्थ",
+    moodAnxious: "चिंतित",
+    moodSad: "उदास",
+    increaseMood: "बढ़ाएँ",
+    decreaseMood: "घटाएँ",
     
     // Booking system
     filterBySpecialization: "विशेषज्ञता के अनुसार फ़िल्टर करें",
