@@ -52,7 +52,7 @@ export default function ChatInterface() {
       setMessages([
         {
           id: "welcome",
-          content: "Hi there! I'm your mental health support assistant. How are you feeling today? I'm here to listen and help you with whatever's on your mind.",
+          content: welcomeMessages[currentLanguage] || welcomeMessages.en,
           isUserMessage: false,
           language: currentLanguage
         },

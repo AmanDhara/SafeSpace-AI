@@ -12,12 +12,12 @@ interface TextToSpeechProps {
 
 // Map of language codes to voice options
 const languageVoiceMap: Record<string, string[]> = {
-  en: ["en-US", "en-GB"],
+  en: ["en-US", "en-GB", "en-IN", "en-AU", "en-CA"],
   hi: ["hi-IN"],
-  mr: ["hi-IN"], // Use Hindi voice for Marathi as fallback
-  ta: ["ta-IN"],
-  te: ["te-IN"],
-  kn: ["kn-IN"]
+  mr: ["mr-IN", "hi-IN"], // Try Marathi first, fallback to Hindi 
+  ta: ["ta-IN", "ta"],
+  te: ["te-IN", "te"],
+  kn: ["kn-IN", "kn"]
 };
 
 export default function TextToSpeech({ text, language, autoPlay = true }: TextToSpeechProps) {
@@ -61,12 +61,34 @@ export default function TextToSpeech({ text, language, autoPlay = true }: TextTo
     // Get the preferred language codes for the current language
     const preferredCodes = languageVoiceMap[lang] || ["en-US"];
     
-    // Find the best matching voice
+    // Log available voices for debugging
+    if (availableVoices.length > 0) {
+      console.log("Available voices:");
+      availableVoices.forEach(voice => {
+        console.log(`- ${voice.name}: ${voice.lang} (Default: ${voice.default})`);
+      });
+    }
+    
+    // First, try to find an exact match
     for (const code of preferredCodes) {
-      const matchingVoice = availableVoices.find(
+      const exactMatch = availableVoices.find(
+        voice => voice.lang.toLowerCase() === code.toLowerCase()
+      );
+      if (exactMatch) {
+        console.log(`Found exact match for ${code}: ${exactMatch.name}`);
+        return exactMatch;
+      }
+    }
+    
+    // Next, try to find a voice that includes the language code
+    for (const code of preferredCodes) {
+      const includesMatch = availableVoices.find(
         voice => voice.lang.toLowerCase().includes(code.toLowerCase())
       );
-      if (matchingVoice) return matchingVoice;
+      if (includesMatch) {
+        console.log(`Found partial match for ${code}: ${includesMatch.name}`);
+        return includesMatch;
+      }
     }
 
     // Fallback to any available voice for the general language
@@ -75,7 +97,29 @@ export default function TextToSpeech({ text, language, autoPlay = true }: TextTo
       voice => voice.lang.toLowerCase().startsWith(langPrefix.toLowerCase())
     );
     
-    return fallbackVoice || null;
+    if (fallbackVoice) {
+      console.log(`Found language prefix match for ${langPrefix}: ${fallbackVoice.name}`);
+      return fallbackVoice;
+    }
+    
+    // Final fallback - use any available voice in the preferred order
+    if (availableVoices.length > 0) {
+      // Try to get a Hindi voice for Indian languages as last resort
+      if (['mr', 'hi', 'ta', 'te', 'kn'].includes(lang)) {
+        const hindiVoice = availableVoices.find(v => v.lang.toLowerCase().includes('hi-in'));
+        if (hindiVoice) {
+          console.log(`Falling back to Hindi voice for ${lang}: ${hindiVoice.name}`);
+          return hindiVoice;
+        }
+      }
+      
+      // Last resort - return default voice or first in list
+      const defaultVoice = availableVoices.find(v => v.default) || availableVoices[0];
+      console.log(`Using default/first voice as fallback: ${defaultVoice.name}`);
+      return defaultVoice;
+    }
+    
+    return null;
   };
 
   const speak = () => {
@@ -103,13 +147,20 @@ export default function TextToSpeech({ text, language, autoPlay = true }: TextTo
     const voice = getBestVoiceForLanguage(language);
     if (voice) {
       utterance.voice = voice;
+      utterance.lang = voice.lang; // Explicitly set the language to match the voice
     } else {
       // Use language code directly if no matching voice found
       utterance.lang = language;
+      console.log(`No voice found for ${language}, falling back to browser default`);
     }
+    
+    // Debug information about available voices and selected voice
+    console.log(`Speaking in ${language} with voice: ${voice?.name || 'default'}, lang: ${voice?.lang || language}`);
+    console.log(`Available voices: ${availableVoices.length}`);
 
     // Set up events
-    utterance.onstart = () => {
+    utterance.onstart = (event) => {
+      console.log(`Speech started with voice: ${utterance.voice?.name || 'default'}`);
       setIsPlaying(true);
       setIsPaused(false);
     };
