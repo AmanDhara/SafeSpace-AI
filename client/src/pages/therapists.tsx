@@ -157,24 +157,24 @@ export default function Therapists() {
     <>
       <div className="container mx-auto px-4 py-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Book a Session with a Therapist</h1>
+          <h1 className="text-3xl font-bold mb-2">{t("therapistsTitle")}</h1>
           <p className="text-gray-600 mb-6">
-            While AI support can be helpful, sometimes talking to a professional therapist is the best option. Browse our network of licensed therapists and book a session.
+            {t("therapistsSubtitle")}
           </p>
           
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             {/* Filter section */}
             <div>
-              <div className="mb-2 font-medium">Filter by Specialization</div>
+              <div className="mb-2 font-medium">{t("filterBySpecialization")}</div>
               <Select 
                 onValueChange={(value) => setSpecialization(value)} 
                 defaultValue="all"
               >
                 <SelectTrigger className="w-[280px]">
-                  <SelectValue placeholder="All Specializations" />
+                  <SelectValue placeholder={t("allSpecializations")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Specializations</SelectItem>
+                  <SelectItem value="all">{t("allSpecializations")}</SelectItem>
                   {specializations.slice(1).map((spec) => (
                     <SelectItem key={spec} value={spec}>{spec}</SelectItem>
                   ))}
