@@ -1,0 +1,39 @@
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Bot, User } from "lucide-react";
+
+interface ChatMessageProps {
+  content: string;
+  isUserMessage: boolean;
+}
+
+export default function ChatMessage({ content, isUserMessage }: ChatMessageProps) {
+  return (
+    <div className={`flex items-start mb-4 ${isUserMessage ? "justify-end" : ""}`}>
+      {!isUserMessage && (
+        <Avatar className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-2 flex-shrink-0">
+          <AvatarFallback className="bg-primary text-white">
+            <Bot size={16} />
+          </AvatarFallback>
+        </Avatar>
+      )}
+      
+      <div 
+        className={`max-w-[80%] ${
+          isUserMessage 
+            ? "bg-primary text-white rounded-lg rounded-tr-none" 
+            : "bg-neutral-medium text-neutral-darkest rounded-lg rounded-tl-none"
+        } p-3`}
+      >
+        <p className={`${isUserMessage ? "text-white" : "text-neutral-darkest"}`}>{content}</p>
+      </div>
+      
+      {isUserMessage && (
+        <Avatar className="w-8 h-8 rounded-full bg-neutral-dark flex items-center justify-center text-white ml-2 flex-shrink-0">
+          <AvatarFallback className="bg-neutral-dark text-white">
+            <User size={16} />
+          </AvatarFallback>
+        </Avatar>
+      )}
+    </div>
+  );
+}
