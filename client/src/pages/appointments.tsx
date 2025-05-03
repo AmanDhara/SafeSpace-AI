@@ -107,16 +107,16 @@ export default function AppointmentsPage() {
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Your Appointments</h1>
+        <h1 className="text-3xl font-bold mb-2">{t("yourAppointments")}</h1>
         <p className="text-gray-600">
-          Manage your scheduled therapy sessions and view your appointment history.
+          {t("manageAppointments")}
         </p>
       </div>
 
       <Tabs defaultValue="upcoming" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-8">
-          <TabsTrigger value="upcoming">Upcoming Appointments</TabsTrigger>
-          <TabsTrigger value="past">Past Appointments</TabsTrigger>
+          <TabsTrigger value="upcoming">{t("upcomingAppointments")}</TabsTrigger>
+          <TabsTrigger value="past">{t("pastAppointments")}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="upcoming">

@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { queryClient } from "@/lib/queryClient";
+import { useLanguage } from "@/hooks/use-language";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -27,6 +28,7 @@ interface BookingModalProps {
 export default function BookingModal({ isOpen, onClose, therapist }: BookingModalProps) {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,8 +36,8 @@ export default function BookingModal({ isOpen, onClose, therapist }: BookingModa
   const handleSubmit = async () => {
     if (!date || !time) {
       toast({
-        title: "Missing information",
-        description: "Please select both date and time for your appointment",
+        title: t("missingInformation"),
+        description: t("pleaseSelectDateTime"),
         variant: "destructive"
       });
       return;
@@ -61,9 +63,14 @@ export default function BookingModal({ isOpen, onClose, therapist }: BookingModa
       localStorage.setItem("appointments", JSON.stringify(updatedAppointments));
 
       // Show success message
+      const successMsg = t("appointmentSuccessMessage")
+        .replace("{therapist}", therapist.name)
+        .replace("{date}", date)
+        .replace("{time}", time);
+        
       toast({
-        title: "Appointment booked!",
-        description: `Your session with ${therapist.name} has been scheduled for ${date} at ${time}.`,
+        title: t("appointmentBooked"),
+        description: successMsg,
       });
 
       // Invalidate any related queries
@@ -73,8 +80,8 @@ export default function BookingModal({ isOpen, onClose, therapist }: BookingModa
       onClose();
     } catch (error) {
       toast({
-        title: "Booking failed",
-        description: "There was an error booking your appointment. Please try again.",
+        title: t("bookingFailed"),
+        description: t("bookingFailedMessage"),
         variant: "destructive"
       });
     } finally {
@@ -86,9 +93,9 @@ export default function BookingModal({ isOpen, onClose, therapist }: BookingModa
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className="relative">
-          <DialogTitle>Book a session with {therapist.name}</DialogTitle>
+          <DialogTitle>{t("bookSessionWith")} {therapist.name}</DialogTitle>
           <p className="text-sm text-gray-600 mt-1">
-            Select your preferred date and time for the appointment.
+            {t("selectDateAndTime")}
           </p>
           <button 
             onClick={onClose}
@@ -100,7 +107,7 @@ export default function BookingModal({ isOpen, onClose, therapist }: BookingModa
 
         <div className="space-y-4 py-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Date</label>
+            <label className="text-sm font-medium">{t("date")}</label>
             <div className="relative">
               <Input
                 type="date"
@@ -114,7 +121,7 @@ export default function BookingModal({ isOpen, onClose, therapist }: BookingModa
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">Time</label>
+            <label className="text-sm font-medium">{t("time")}</label>
             <div className="relative">
               <Input
                 type="time"
@@ -129,14 +136,14 @@ export default function BookingModal({ isOpen, onClose, therapist }: BookingModa
 
         <DialogFooter className="flex justify-between">
           <Button variant="outline" onClick={onClose}>
-            Cancel
+            {t("cancel")}
           </Button>
           <Button 
             onClick={handleSubmit}
             disabled={isSubmitting}
             className="bg-blue-500 hover:bg-blue-600"
           >
-            Confirm Booking
+            {t("confirmBooking")}
           </Button>
         </DialogFooter>
       </DialogContent>
