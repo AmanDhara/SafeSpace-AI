@@ -1,7 +1,15 @@
 import OpenAI from "openai";
 
-// the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-const MODEL = "gpt-4o";
+// Configure model options - we'll try powerful models first and fall back to more accessible ones
+const MODEL_OPTIONS = [
+  "gpt-4o", // The newest, most capable model (as of May 2024) - first choice if available
+  "gpt-4-turbo", // Good fallback if gpt-4o isn't available
+  "gpt-4", // Standard GPT-4
+  "gpt-3.5-turbo", // Most widely accessible model - good fallback
+];
+
+// We'll try each model in order until we find one that works
+let CURRENT_MODEL = MODEL_OPTIONS[0];
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -71,19 +79,46 @@ export async function generateAIResponse(
         }
       });
     
-    // Make API call to OpenAI with properly typed messages
-    const completion = await openai.chat.completions.create({
-      model: MODEL,
-      messages: [
-        ...typedMessages,
-        {
-          role: "system" as const,
-          content: `Respond in ${languageName} language only. Regardless of the language used in the user's message, your response must be in ${languageName} only.`
+    // Try models in sequence until one works
+    let lastError = null;
+    let completion = null;
+    
+    // Try each model in our options list
+    for (const modelOption of MODEL_OPTIONS) {
+      try {
+        // Make API call to OpenAI with properly typed messages
+        completion = await openai.chat.completions.create({
+          model: modelOption,
+          messages: [
+            ...typedMessages,
+            {
+              role: "system" as const,
+              content: `Respond in ${languageName} language only. Regardless of the language used in the user's message, your response must be in ${languageName} only.`
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 500
+        });
+        
+        // If we get here, the call succeeded, save this model for future use
+        CURRENT_MODEL = modelOption;
+        console.log(`Successfully used model: ${modelOption}`);
+        break;
+      } catch (err: any) {
+        lastError = err;
+        console.log(`Error with model ${modelOption}: ${err.message || 'Unknown error'}. Trying next model...`);
+        
+        // If this isn't a model-related error, don't try other models
+        if (err.code !== 'model_not_found' && err.type !== 'invalid_request_error') {
+          break;
         }
-      ],
-      temperature: 0.7,
-      max_tokens: 500
-    });
+      }
+    }
+    
+    // If we tried all models and still have no completion, throw the last error
+    if (!completion) {
+      throw lastError || new Error("All models failed");
+    }
 
     const aiResponse = completion.choices[0].message.content || "I'm sorry, I couldn't generate a response. Please try again.";
 
@@ -125,20 +160,21 @@ export async function generateAIResponse(
       }
     };
     
-    // Select appropriate error message based on the language
-    const languageKey = language in errorMessages.quota ? language : 'en';
+    // Check if the language is supported in our error messages
+    const supportedLanguages = ['en', 'hi', 'mr', 'ta', 'te', 'kn'];
+    const languageKey = supportedLanguages.includes(language) ? language : 'en';
     
     // Check if it's a quota error
     if (error?.code === 'insufficient_quota') {
-      return errorMessages.quota[languageKey];
+      return errorMessages.quota[languageKey as keyof typeof errorMessages.quota];
     }
     
     // Rate limit errors
     if (error?.status === 429) {
-      return errorMessages.rateLimit[languageKey];
+      return errorMessages.rateLimit[languageKey as keyof typeof errorMessages.rateLimit];
     }
     
-    return errorMessages.connection[languageKey];
+    return errorMessages.connection[languageKey as keyof typeof errorMessages.connection];
   }
 }
 
