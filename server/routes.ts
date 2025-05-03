@@ -22,26 +22,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const { message, language, sessionId } = result.data;
       
-      // Detect language if not provided
-      const detectedLanguage = language || await detectLanguage(message);
+      // Detect language only if not explicitly selected
+      let responseLanguage = language;
+      let detectedLanguage = null;
+      
+      if (!language) {
+        detectedLanguage = await detectLanguage(message);
+        responseLanguage = detectedLanguage;
+      }
       
       // Store user message
       await storage.createMessage({
         content: message,
         isUserMessage: true,
-        language: detectedLanguage,
+        language: detectedLanguage || responseLanguage || "en", // Default to English if undefined
         sessionId,
         timestamp: new Date().toISOString()
       });
       
-      // Generate AI response
-      const aiResponse = await generateAIResponse(message, sessionId, detectedLanguage);
+      // Generate AI response using the explicitly selected language if available
+      const aiResponse = await generateAIResponse(message, sessionId, responseLanguage || "en");
       
       // Store bot response
       await storage.createMessage({
         content: aiResponse,
         isUserMessage: false,
-        language: detectedLanguage,
+        language: responseLanguage || "en", // Default to English if undefined
         sessionId,
         timestamp: new Date().toISOString()
       });
@@ -49,7 +55,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Return response
       return res.status(200).json({
         message: aiResponse,
-        language: detectedLanguage,
+        language: responseLanguage,
         detectedLanguage
       });
     } catch (error) {

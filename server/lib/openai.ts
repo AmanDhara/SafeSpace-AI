@@ -55,10 +55,22 @@ export async function generateAIResponse(
       ...sessionHistories[sessionId].slice(-10).filter(msg => msg.role !== "system")
     ];
 
-    // Make API call to OpenAI
+    // Add explicit instruction for responding in the selected language
+    const languageName = getLanguageName(language);
+    
+    // Make API call to OpenAI with properly typed messages
     const completion = await openai.chat.completions.create({
       model: MODEL,
-      messages: recentMessages,
+      messages: [
+        ...recentMessages.map(msg => ({
+          role: msg.role as "system" | "user" | "assistant",
+          content: msg.content
+        })),
+        {
+          role: "system",
+          content: `Respond in ${languageName} language only. Regardless of the language used in the user's message, your response must be in ${languageName} only.`
+        }
+      ],
       temperature: 0.7,
       max_tokens: 500
     });
@@ -72,8 +84,33 @@ export async function generateAIResponse(
     });
 
     return aiResponse;
-  } catch (error) {
+  } catch (error: any) { // Type error as any to safely access properties
     console.error("OpenAI API error:", error);
+    
+    // Check if it's a quota error
+    if (error?.code === 'insufficient_quota') {
+      return "Sorry, I'm currently experiencing high demand. Please try again later or contact support to update API quota limits.";
+    }
+    
+    // Rate limit errors
+    if (error?.status === 429) {
+      return "I'm receiving too many requests right now. Please wait a moment and try again.";
+    }
+    
     return "I'm having trouble connecting to my services. Please try again in a moment.";
   }
+}
+
+// Helper function to get language name from code
+function getLanguageName(code: string): string {
+  const languageNames: Record<string, string> = {
+    en: "English",
+    hi: "Hindi",
+    mr: "Marathi",
+    ta: "Tamil",
+    te: "Telugu",
+    kn: "Kannada"
+  };
+  
+  return languageNames[code] || "English";
 }
