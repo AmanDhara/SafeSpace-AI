@@ -60,7 +60,7 @@ export default function ChatInterface() {
   }, [sessionId]);
 
   // Get chat history for the session
-  useQuery({
+  const chatHistoryQuery = useQuery({
     queryKey: ["/api/chat", sessionId],
     queryFn: async () => {
       if (!sessionId) return { messages: [] };
@@ -68,23 +68,26 @@ export default function ChatInterface() {
       if (!res.ok) throw new Error("Failed to load chat history");
       return res.json();
     },
-    enabled: !!sessionId,
-    onSettled: (data: { messages: any[] } | undefined, error: Error | null) => {
-      if (error) {
-        console.error("Failed to load chat history:", error);
-        return;
-      }
-      
-      if (data?.messages?.length > 0) {
-        setMessages(data.messages.map((msg) => ({
-          id: msg.id.toString(),
-          content: msg.content,
-          isUserMessage: msg.isUserMessage,
-          language: msg.language,
-        })));
-      }
-    }
+    enabled: !!sessionId
   });
+  
+  // Handle chat history data with proper error and data handling
+  useEffect(() => {
+    if (chatHistoryQuery.error) {
+      console.error("Failed to load chat history:", chatHistoryQuery.error);
+      return;
+    }
+    
+    const data = chatHistoryQuery.data;
+    if (data && data.messages && data.messages.length > 0) {
+      setMessages(data.messages.map((msg: any) => ({
+        id: msg.id.toString(),
+        content: msg.content,
+        isUserMessage: msg.isUserMessage,
+        language: msg.language,
+      })));
+    }
+  }, [chatHistoryQuery.data, chatHistoryQuery.error]);
 
   // Mutation for sending messages
   const sendMessageMutation = useMutation({
