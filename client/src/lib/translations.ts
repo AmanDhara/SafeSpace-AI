@@ -10,6 +10,21 @@ export const appTranslations = {
     signUp: "Sign Up",
     logOut: "Log Out",
     
+    // Recommendations Page Tabs
+    recommendedResources: "Recommended Resources",
+    resourcesDescription: "Discover books, videos, podcasts, and other resources to support your mental well-being journey.",
+    informationResources: "Information",
+    musicTherapy: "Music Therapy",
+    breathingExercises: "Breathing Exercises",
+    moodEnhancementMusic: "Mood Enhancement Music",
+    musicDescription: "Scientific research shows that music can significantly impact your mood and emotional state. Try these curated playlists to help with relaxation, focus, and emotional wellbeing.",
+    listenOnSpotify: "Listen on Spotify",
+    breathingDescription: "Deep breathing exercises can help reduce stress, anxiety, and promote relaxation. Follow these guided videos to learn different breathing techniques.",
+    learnMore: "Learn more",
+    personalizedRecommendations: "Personalized Recommendations",
+    personalizedRecommendationsDescription: "Get resources tailored to your specific needs and interests. Our AI will analyze your preferences and suggest the most relevant books, videos, and podcasts.",
+    getPersonalResources: "Get My Personal Resources",
+    
     // Homepage
     welcome: "Welcome",
     welcomeMessage: "How are you feeling today? I'm here to listen and support your mental wellness journey.",
@@ -52,18 +67,16 @@ export const appTranslations = {
     therapistHelpDesc: "Our AI assistant can recommend the right therapist based on your specific needs and preferences.",
     getRecommendations: "Get Personalized Recommendations",
     
-    // Recommendations
+    // Recommendations (keep original keys for backward compatibility)
     recommendationsTitle: "Recommended Resources",
     recommendationsDesc: "Discover books, videos, podcasts, and other resources to support your mental well-being journey.",
     books: "Books",
     videos: "Videos",
     podcasts: "Podcasts",
     music: "Music",
-    learnMore: "Learn more",
     by: "By",
     personalizedTitle: "Personalized Recommendations",
     personalizedDesc: "Get resources tailored to your specific needs and interests. Our AI will analyze your preferences and suggest the most relevant books, videos, and podcasts.",
-    getPersonalResources: "Get My Personal Resources",
     
     // Chat Interface
     mentalHealthSupport: "Mental Health Support",

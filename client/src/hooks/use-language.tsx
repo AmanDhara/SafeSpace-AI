@@ -2,7 +2,28 @@ import { createContext, ReactNode, useContext, useState, useEffect } from "react
 import { supportedLanguages } from "@/lib/languages";
 import { getText, getAllTranslations, appTranslations } from "@/lib/translations";
 
-type TranslationType = typeof appTranslations.en;
+// Define all possible translation keys
+type TranslationKeys = 
+  | "home" | "chat" | "recommendations" | "therapists" | "helpContact" | "signIn" | "signUp" | "logOut"
+  | "welcome" | "welcomeMessage" | "startConversation" | "keyFeatures" | "aiChatSupport" | "aiChatDescription"
+  | "voiceInteraction" | "voiceDescription" | "multilingualSupport" | "multilingualDescription"
+  | "quickAccess" | "recentConversations" | "recentConversationsDesc" | "viewConversations"
+  | "professionalHelp" | "professionalHelpDesc" | "findTherapists"
+  | "authWelcome" | "authMessage" | "login" | "register" | "username" | "password" | "email" | "name"
+  | "createAccount" | "authHeroTitle" | "authHeroDesc"
+  | "therapistsTitle" | "therapistsSubtitle" | "speaks" | "availableOn" | "scheduleConsultation"
+  | "therapistHelp" | "therapistHelpDesc" | "getRecommendations"
+  | "recommendationsTitle" | "recommendationsDesc" | "books" | "videos" | "podcasts" | "music"
+  | "by" | "personalizedTitle" | "personalizedDesc"
+  | "mentalHealthSupport" | "typingIndicator" | "sendMessage" | "listen" | "pause" | "resume" | "stop"
+  | "contactUs" | "contactUsDesc" | "subject" | "message" | "sendMessageButton" | "contactInfo"
+  | "contactInfoDesc" | "phoneSupport" | "emailContact" | "liveChat" | "faq" | "viewAllFAQs"
+  | "recommendedResources" | "resourcesDescription" | "informationResources" | "musicTherapy"
+  | "breathingExercises" | "moodEnhancementMusic" | "musicDescription" | "listenOnSpotify"
+  | "breathingDescription" | "learnMore" | "personalizedRecommendations" 
+  | "personalizedRecommendationsDescription" | "getPersonalResources";
+
+type TranslationType = Record<TranslationKeys, string>;
 
 type LanguageContextType = {
   currentLanguage: string;
