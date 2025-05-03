@@ -1,17 +1,22 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Bot, User } from "lucide-react";
+import { Bot, User, ThumbsUp, MessageSquare } from "lucide-react";
 import TextToSpeech from "@/components/TextToSpeech";
-import { useEffect, useRef } from "react";
+import FeedbackForm from "@/components/FeedbackForm";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface ChatMessageProps {
   content: string;
   isUserMessage: boolean;
   language?: string;
+  messageId?: string;
 }
 
-export default function ChatMessage({ content, isUserMessage, language = "en" }: ChatMessageProps) {
+export default function ChatMessage({ content, isUserMessage, language = "en", messageId }: ChatMessageProps) {
   // Use ref to track if this is a new message
   const isNewMessage = useRef(true);
+  const [isFeedbackDialogOpen, setIsFeedbackDialogOpen] = useState(false);
   
   // Reset the isNewMessage flag after the component is mounted
   // This ensures auto-play only happens once when the message first appears
@@ -49,9 +54,18 @@ export default function ChatMessage({ content, isUserMessage, language = "en" }:
       >
         <p className={`${isUserMessage ? "text-white" : "text-neutral-darkest"}`}>{content}</p>
         
-        {/* Only show text-to-speech for AI responses with auto-play enabled */}
+        {/* Only show text-to-speech and feedback for AI responses */}
         {!isUserMessage && (
-          <div className="mt-2 flex justify-end">
+          <div className="mt-2 flex justify-between items-center">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1 p-1"
+              onClick={() => setIsFeedbackDialogOpen(true)}
+            >
+              <MessageSquare className="h-3 w-3" />
+              Feedback
+            </Button>
             <TextToSpeech 
               text={content} 
               language={language} 
@@ -59,6 +73,17 @@ export default function ChatMessage({ content, isUserMessage, language = "en" }:
             />
           </div>
         )}
+        
+        {/* Feedback Dialog */}
+        <Dialog open={isFeedbackDialogOpen} onOpenChange={setIsFeedbackDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+            <FeedbackForm 
+              messageId={messageId}
+              responseContent={content}
+              onClose={() => setIsFeedbackDialogOpen(false)}
+            />
+          </DialogContent>
+        </Dialog>
       </div>
       
       {isUserMessage && (

@@ -202,6 +202,7 @@ export default function ChatInterface() {
           {messages.map((message) => (
             <ChatMessage
               key={message.id}
+              messageId={message.id}
               content={message.content}
               isUserMessage={message.isUserMessage}
               language={message.language || currentLanguage}

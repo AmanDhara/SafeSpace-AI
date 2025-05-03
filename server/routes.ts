@@ -100,6 +100,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return res.status(200).json({ sessionId });
   });
 
+  // API route for feedback
+  app.post("/api/feedback", async (req, res) => {
+    try {
+      const { messageId, rating, comment, responseContent, language } = req.body;
+
+      if (!messageId || !rating || !responseContent || !language) {
+        return res.status(400).json({
+          message: "Missing required fields"
+        });
+      }
+
+      // Get user ID from authenticated session if available
+      const userId = req.isAuthenticated() ? req.user?.id : null;
+
+      const feedback = await storage.createFeedback({
+        messageId,
+        rating,
+        comment: comment || null,
+        responseContent,
+        language,
+        userId: userId || undefined
+      });
+
+      return res.status(201).json({ feedback });
+    } catch (error) {
+      console.error('Feedback API error:', error);
+      return res.status(500).json({
+        message: "Failed to save feedback",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
