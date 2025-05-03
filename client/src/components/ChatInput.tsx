@@ -68,7 +68,15 @@ export default function ChatInput({ onSendMessage, isLoading, currentLanguage }:
         </Button>
       </div>
       <div className="mt-2 flex justify-between text-xs text-neutral-dark">
-        <span>Supports 6 languages: English, Hindi, Marathi, Tamil, Telugu, Kannada</span>
+        <span>
+          <span className="font-medium">Current: </span>
+          {currentLanguage === "en" ? "English" : 
+           currentLanguage === "hi" ? "Hindi" : 
+           currentLanguage === "mr" ? "Marathi" : 
+           currentLanguage === "ta" ? "Tamil" : 
+           currentLanguage === "te" ? "Telugu" : 
+           currentLanguage === "kn" ? "Kannada" : "English"}
+        </span>
         <span className={message.length > 0 ? "" : "hidden"}>
           {message.length}/500
         </span>

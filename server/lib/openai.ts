@@ -58,16 +58,26 @@ export async function generateAIResponse(
     // Add explicit instruction for responding in the selected language
     const languageName = getLanguageName(language);
     
+    // Create properly typed messages for OpenAI API
+    const typedMessages = recentMessages
+      .filter(msg => ["system", "user", "assistant"].includes(msg.role))
+      .map(msg => {
+        if (msg.role === "system") {
+          return { role: "system" as const, content: msg.content };
+        } else if (msg.role === "user") {
+          return { role: "user" as const, content: msg.content };
+        } else {
+          return { role: "assistant" as const, content: msg.content };
+        }
+      });
+    
     // Make API call to OpenAI with properly typed messages
     const completion = await openai.chat.completions.create({
       model: MODEL,
       messages: [
-        ...recentMessages.map(msg => ({
-          role: msg.role as "system" | "user" | "assistant",
-          content: msg.content
-        })),
+        ...typedMessages,
         {
-          role: "system",
+          role: "system" as const,
           content: `Respond in ${languageName} language only. Regardless of the language used in the user's message, your response must be in ${languageName} only.`
         }
       ],

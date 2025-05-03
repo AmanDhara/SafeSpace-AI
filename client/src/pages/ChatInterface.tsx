@@ -69,19 +69,21 @@ export default function ChatInterface() {
       return res.json();
     },
     enabled: !!sessionId,
-    onSuccess: (data) => {
-      if (data.messages?.length > 0) {
-        setMessages(data.messages.map((msg: any) => ({
+    onSettled: (data: { messages: any[] } | undefined, error: Error | null) => {
+      if (error) {
+        console.error("Failed to load chat history:", error);
+        return;
+      }
+      
+      if (data?.messages?.length > 0) {
+        setMessages(data.messages.map((msg) => ({
           id: msg.id.toString(),
           content: msg.content,
           isUserMessage: msg.isUserMessage,
           language: msg.language,
         })));
       }
-    },
-    onError: (error) => {
-      console.error("Failed to load chat history:", error);
-    },
+    }
   });
 
   // Mutation for sending messages
@@ -154,6 +156,17 @@ export default function ChatInterface() {
   // Handle language change
   const handleLanguageChange = (language: string) => {
     setCurrentLanguage(language);
+    
+    // Add system message about language change
+    setMessages(prev => [
+      ...prev,
+      {
+        id: Date.now().toString(),
+        content: welcomeMessages[language] || welcomeMessages.en,
+        isUserMessage: false,
+        language,
+      },
+    ]);
   };
 
   return (
