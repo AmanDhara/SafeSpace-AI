@@ -23,7 +23,14 @@ type TranslationKeys =
   | "breathingDescription" | "learnMore" | "watchVideo" | "personalizedRecommendations" 
   | "personalizedRecommendationsDescription" | "getPersonalResources"
   | "topicsPageTitle" | "topicsPageDescription" | "searchTopics" | "personalizedGuidanceTitle"
-  | "personalizedGuidanceDescription" | "chatWithAI" | "findTherapistButton";
+  | "personalizedGuidanceDescription" | "chatWithAI" | "findTherapistButton"
+  // Booking system translations
+  | "filterBySpecialization" | "allSpecializations" | "viewYourAppointments" | "bookSession" | "reviewsCount" 
+  | "bookSessionWith" | "selectDateAndTime" | "date" | "time" | "cancel" | "confirmBooking" | "missingInformation"
+  | "pleaseSelectDateTime" | "appointmentBooked" | "appointmentSuccessMessage" | "bookingFailed" | "bookingFailedMessage"
+  | "yourAppointments" | "manageAppointments" | "upcomingAppointments" | "pastAppointments" | "scheduled" | "completed"
+  | "reschedule" | "cancelAppointment" | "keepAppointment" | "yesCancelAppointment" | "areYouSure" | "cancelConfirmMessage"
+  | "noUpcomingAppointments" | "noUpcomingDesc" | "noPastAppointments" | "noPastDesc" | "bookYourFirstSession" | "bookAgain";
 
 type TranslationType = Record<TranslationKeys, string>;
 

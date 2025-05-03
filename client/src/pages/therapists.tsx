@@ -185,7 +185,7 @@ export default function Therapists() {
             {/* View appointments button */}
             <Link href="/appointments">
               <Button variant="outline" className="bg-white">
-                View Your Appointments
+                {t("viewYourAppointments")}
               </Button>
             </Link>
           </div>
@@ -212,7 +212,7 @@ export default function Therapists() {
                     <div className="mt-1 mb-1">
                       {renderRating(therapist.rating)}
                     </div>
-                    <div className="text-xs text-gray-500">({therapist.reviews} reviews)</div>
+                    <div className="text-xs text-gray-500">({therapist.reviews} {t("reviewsCount")})</div>
                   </div>
                 </div>
                 
@@ -238,7 +238,7 @@ export default function Therapists() {
                   className="w-full rounded-t-none bg-blue-500 hover:bg-blue-600"
                   onClick={() => handleBookSession(therapist)}
                 >
-                  Book Session
+                  {t("bookSession")}
                 </Button>
               </CardFooter>
             </Card>
