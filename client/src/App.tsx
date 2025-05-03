@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar";
 import Therapists from "@/pages/therapists";
 import Recommendations from "@/pages/recommendations";
 import HelpContact from "@/pages/help-contact";
+import AppointmentsPage from "@/pages/appointments";
 
 // Lazy load components
 import { lazy, Suspense } from 'react';
@@ -35,6 +36,7 @@ function Router() {
       <ProtectedRoute path="/therapists" component={Therapists} />
       <ProtectedRoute path="/recommendations" component={Recommendations} />
       <ProtectedRoute path="/help-contact" component={HelpContact} />
+      <ProtectedRoute path="/appointments" component={AppointmentsPage} />
       <ProtectedRoute path="/topics" component={() => (
         <Suspense fallback={<LoadingSpinner />}>
           <TopicsPage />

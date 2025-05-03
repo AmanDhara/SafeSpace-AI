@@ -11,10 +11,16 @@ import {
 } from "@/components/ui/select";
 import { Star, StarHalf } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useToast } from "@/hooks/use-toast";
+import BookingModal from "@/components/BookingModal";
+import { Link } from "wouter";
 
 export default function Therapists() {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [specialization, setSpecialization] = useState("all");
+  const [selectedTherapist, setSelectedTherapist] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Enhanced therapist data with ratings, specialties, profile images, and short descriptions
   const therapists = [
@@ -105,10 +111,8 @@ export default function Therapists() {
   ];
 
   // Create list of unique specializations for filter
-  const specializations = [
-    "All Specializations",
-    ...new Set(therapists.map(t => t.specialization))
-  ];
+  const uniqueSpecializations = Array.from(new Set(therapists.map(t => t.specialization)));
+  const specializations = ["All Specializations", ...uniqueSpecializations];
 
   // Filter therapists based on selected specialization
   const filteredTherapists = specialization === "all" 
@@ -139,94 +143,127 @@ export default function Therapists() {
     );
   };
 
+  const handleBookSession = (therapist: any) => {
+    setSelectedTherapist(therapist);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedTherapist(null);
+  };
+
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Book a Session with a Therapist</h1>
-        <p className="text-gray-600 mb-6">
-          While AI support can be helpful, sometimes talking to a professional therapist is the best option. Browse our network of licensed therapists and book a session.
-        </p>
-        
-        {/* Filter section */}
-        <div className="mb-6">
-          <div className="mb-2 font-medium">Filter by Specialization</div>
-          <Select 
-            onValueChange={(value) => setSpecialization(value)} 
-            defaultValue="all"
-          >
-            <SelectTrigger className="w-[280px]">
-              <SelectValue placeholder="All Specializations" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Specializations</SelectItem>
-              {specializations.slice(1).map((spec) => (
-                <SelectItem key={spec} value={spec}>{spec}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+    <>
+      <div className="container mx-auto px-4 py-6">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">Book a Session with a Therapist</h1>
+          <p className="text-gray-600 mb-6">
+            While AI support can be helpful, sometimes talking to a professional therapist is the best option. Browse our network of licensed therapists and book a session.
+          </p>
+          
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+            {/* Filter section */}
+            <div>
+              <div className="mb-2 font-medium">Filter by Specialization</div>
+              <Select 
+                onValueChange={(value) => setSpecialization(value)} 
+                defaultValue="all"
+              >
+                <SelectTrigger className="w-[280px]">
+                  <SelectValue placeholder="All Specializations" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Specializations</SelectItem>
+                  {specializations.slice(1).map((spec) => (
+                    <SelectItem key={spec} value={spec}>{spec}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* View appointments button */}
+            <Link href="/appointments">
+              <Button variant="outline" className="bg-white">
+                View Your Appointments
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredTherapists.map((therapist) => (
+            <Card key={therapist.id} className="overflow-hidden">
+              <div className="p-5">
+                <div className="flex items-start gap-4 mb-3">
+                  {/* Therapist image */}
+                  <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src={therapist.image} 
+                      alt={therapist.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Therapist details */}
+                  <div>
+                    <h3 className="font-semibold text-blue-600">{therapist.name}</h3>
+                    <p className="text-sm text-gray-600">{therapist.specialization}</p>
+                    <div className="mt-1 mb-1">
+                      {renderRating(therapist.rating)}
+                    </div>
+                    <div className="text-xs text-gray-500">({therapist.reviews} reviews)</div>
+                  </div>
+                </div>
+                
+                <CardContent className="p-0">
+                  <p className="text-sm text-gray-700 mb-3">{therapist.shortDescription}</p>
+                  
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {therapist.specialties.map(specialty => (
+                      <Badge 
+                        key={specialty} 
+                        variant="outline" 
+                        className="text-xs bg-gray-100"
+                      >
+                        {specialty}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </div>
+              
+              <CardFooter className="p-0">
+                <Button 
+                  className="w-full rounded-t-none bg-blue-500 hover:bg-blue-600"
+                  onClick={() => handleBookSession(therapist)}
+                >
+                  Book Session
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+
+        <div className="bg-blue-50 rounded-lg p-6 mt-8">
+          <h2 className="text-xl font-semibold mb-2">{t("therapistHelp")}</h2>
+          <p className="text-gray-600 mb-4">
+            {t("therapistHelpDesc")}
+          </p>
+          <Button variant="outline" className="bg-white">
+            {t("getRecommendations")}
+          </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredTherapists.map((therapist) => (
-          <Card key={therapist.id} className="overflow-hidden">
-            <div className="p-5">
-              <div className="flex items-start gap-4 mb-3">
-                {/* Therapist image */}
-                <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
-                  <img 
-                    src={therapist.image} 
-                    alt={therapist.name} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                {/* Therapist details */}
-                <div>
-                  <h3 className="font-semibold text-blue-600">{therapist.name}</h3>
-                  <p className="text-sm text-gray-600">{therapist.specialization}</p>
-                  <div className="mt-1 mb-1">
-                    {renderRating(therapist.rating)}
-                  </div>
-                  <div className="text-xs text-gray-500">({therapist.reviews} reviews)</div>
-                </div>
-              </div>
-              
-              <CardContent className="p-0">
-                <p className="text-sm text-gray-700 mb-3">{therapist.shortDescription}</p>
-                
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {therapist.specialties.map(specialty => (
-                    <Badge 
-                      key={specialty} 
-                      variant="outline" 
-                      className="text-xs bg-gray-100"
-                    >
-                      {specialty}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </div>
-            
-            <CardFooter className="p-0">
-              <Button className="w-full rounded-t-none bg-blue-500 hover:bg-blue-600">
-                Book Session
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
-
-      <div className="bg-blue-50 rounded-lg p-6 mt-8">
-        <h2 className="text-xl font-semibold mb-2">{t("therapistHelp")}</h2>
-        <p className="text-gray-600 mb-4">
-          {t("therapistHelpDesc")}
-        </p>
-        <Button variant="outline" className="bg-white">
-          {t("getRecommendations")}
-        </Button>
-      </div>
-    </div>
+      {/* Booking Modal */}
+      {selectedTherapist && (
+        <BookingModal 
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          therapist={selectedTherapist}
+        />
+      )}
+    </>
   );
 }
