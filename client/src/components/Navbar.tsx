@@ -104,8 +104,17 @@ export default function Navbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {supportedLanguages.map((lang) => (
-                <DropdownMenuItem key={lang.code} className="cursor-pointer">
-                  {lang.name}
+                <DropdownMenuItem 
+                  key={lang.code} 
+                  className={`cursor-pointer ${currentLanguage === lang.code ? "bg-blue-50 font-medium" : ""}`}
+                  onClick={() => handleLanguageChange(lang.code)}
+                >
+                  <div className="flex items-center">
+                    {currentLanguage === lang.code && (
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2" />
+                    )}
+                    <span>{lang.name}</span>
+                  </div>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
@@ -126,17 +135,17 @@ export default function Navbar() {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem disabled>
                   <User className="mr-2 h-4 w-4" />
-                  <span>Signed in as {user.username}</span>
+                  <span>{user.username}</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  <span>{t("logOut")}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Link href="/auth" className="inline-block">
-              <Button size="sm">Sign In</Button>
+              <Button size="sm">{t("signIn")}</Button>
             </Link>
           )}
         </div>
