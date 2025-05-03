@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Bot, User } from "lucide-react";
 import TextToSpeech from "@/components/TextToSpeech";
+import { useEffect, useRef } from "react";
 
 interface ChatMessageProps {
   content: string;
@@ -9,6 +10,16 @@ interface ChatMessageProps {
 }
 
 export default function ChatMessage({ content, isUserMessage, language = "en" }: ChatMessageProps) {
+  // Use ref to track if this is a new message
+  const isNewMessage = useRef(true);
+
+  // Reset the ref on component unmount
+  useEffect(() => {
+    return () => {
+      isNewMessage.current = false;
+    };
+  }, []);
+
   return (
     <div className={`flex items-start mb-4 ${isUserMessage ? "justify-end" : ""}`}>
       {!isUserMessage && (
@@ -28,10 +39,14 @@ export default function ChatMessage({ content, isUserMessage, language = "en" }:
       >
         <p className={`${isUserMessage ? "text-white" : "text-neutral-darkest"}`}>{content}</p>
         
-        {/* Only show text-to-speech for AI responses */}
+        {/* Only show text-to-speech for AI responses with auto-play enabled */}
         {!isUserMessage && (
           <div className="mt-2 flex justify-end">
-            <TextToSpeech text={content} language={language} />
+            <TextToSpeech 
+              text={content} 
+              language={language} 
+              autoPlay={isNewMessage.current} 
+            />
           </div>
         )}
       </div>

@@ -46,18 +46,19 @@ export default function ChatInterface() {
     fetchSessionId();
   }, [toast]);
 
-  // Add welcome message when the session is initialized
+  // Add interactive welcome message when the session is initialized
   useEffect(() => {
     if (sessionId) {
       setMessages([
         {
           id: "welcome",
-          content: "Hello! I'm your mental health support assistant. You can share your thoughts in English, Hindi, Marathi, Tamil, Telugu, or Kannada. How can I help you today?",
+          content: "Hi there! I'm your mental health support assistant. How are you feeling today? I'm here to listen and help you with whatever's on your mind.",
           isUserMessage: false,
+          language: currentLanguage
         },
       ]);
     }
-  }, [sessionId]);
+  }, [sessionId, currentLanguage]);
 
   // Get chat history for the session
   const chatHistoryQuery = useQuery({

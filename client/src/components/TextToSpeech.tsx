@@ -2,10 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Volume2, Pause, StopCircle } from "lucide-react";
 import { supportedLanguages } from "@/lib/languages";
+import { useLanguage } from "@/hooks/use-language";
 
 interface TextToSpeechProps {
   text: string;
   language: string;
+  autoPlay?: boolean;
 }
 
 // Map of language codes to voice options
@@ -18,11 +20,12 @@ const languageVoiceMap: Record<string, string[]> = {
   kn: ["kn-IN"]
 };
 
-export default function TextToSpeech({ text, language }: TextToSpeechProps) {
+export default function TextToSpeech({ text, language, autoPlay = true }: TextToSpeechProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Initialize speech synthesis
@@ -46,6 +49,13 @@ export default function TextToSpeech({ text, language }: TextToSpeechProps) {
       };
     }
   }, []);
+
+  // Auto-play effect when new text arrives and autoPlay is true
+  useEffect(() => {
+    if (autoPlay && text && availableVoices.length > 0 && !isPlaying) {
+      speak();
+    }
+  }, [text, availableVoices, autoPlay]);
 
   const getBestVoiceForLanguage = (lang: string): SpeechSynthesisVoice | null => {
     // Get the preferred language codes for the current language
@@ -160,11 +170,11 @@ export default function TextToSpeech({ text, language }: TextToSpeechProps) {
           variant="ghost"
           size="sm"
           onClick={speak}
-          title={`Listen in ${currentLangName}`}
+          title={`${t("listen")} ${currentLangName}`}
           className="text-blue-500 hover:text-blue-600 hover:bg-blue-50"
         >
           <Volume2 className="h-4 w-4 mr-1" />
-          <span className="text-xs">Listen</span>
+          <span className="text-xs">{t("listen")}</span>
         </Button>
       ) : (
         <>
@@ -173,33 +183,33 @@ export default function TextToSpeech({ text, language }: TextToSpeechProps) {
               variant="ghost"
               size="sm"
               onClick={speak}
-              title="Resume"
+              title={t("resume")}
               className="text-blue-500 hover:text-blue-600 hover:bg-blue-50"
             >
               <Volume2 className="h-4 w-4 mr-1" />
-              <span className="text-xs">Resume</span>
+              <span className="text-xs">{t("resume")}</span>
             </Button>
           ) : (
             <Button
               variant="ghost"
               size="sm"
               onClick={pause}
-              title="Pause"
+              title={t("pause")}
               className="text-blue-500 hover:text-blue-600 hover:bg-blue-50"
             >
               <Pause className="h-4 w-4 mr-1" />
-              <span className="text-xs">Pause</span>
+              <span className="text-xs">{t("pause")}</span>
             </Button>
           )}
           <Button
             variant="ghost"
             size="sm"
             onClick={stop}
-            title="Stop"
+            title={t("stop")}
             className="text-red-500 hover:text-red-600 hover:bg-red-50"
           >
             <StopCircle className="h-4 w-4 mr-1" />
-            <span className="text-xs">Stop</span>
+            <span className="text-xs">{t("stop")}</span>
           </Button>
         </>
       )}

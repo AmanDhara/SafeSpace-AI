@@ -25,14 +25,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const { message, language, sessionId } = result.data;
       
-      // Detect language only if not explicitly selected
+      // Always detect input language, but use selected language for responses
       let responseLanguage = language;
       let detectedLanguage = null;
       
-      if (!language) {
-        detectedLanguage = await detectLanguage(message);
-        responseLanguage = detectedLanguage;
-      }
+      // Detect the language of the input message regardless
+      detectedLanguage = await detectLanguage(message);
+      
+      // Always use the user-selected language for responses, even if input is in a different language
+      // Only fall back to detected language if no language was explicitly selected
       
       // Store user message
       await storage.createMessage({
