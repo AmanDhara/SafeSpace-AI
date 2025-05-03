@@ -97,17 +97,48 @@ export async function generateAIResponse(
   } catch (error: any) { // Type error as any to safely access properties
     console.error("OpenAI API error:", error);
     
+    // Error messages in different languages
+    const errorMessages = {
+      quota: {
+        en: "Sorry, I'm currently experiencing high demand. Please try again later or contact support to update API quota limits.",
+        hi: "क्षमा करें, मैं वर्तमान में उच्च मांग का अनुभव कर रहा हूं। कृपया बाद में पुनः प्रयास करें या API कोटा सीमा अपडेट करने के लिए सपोर्ट से संपर्क करें।",
+        mr: "क्षमा करा, मी सध्या जास्त मागणीचा अनुभव घेत आहे. कृपया नंतर पुन्हा प्रयत्न करा किंवा API कोटा मर्यादा अपडेट करण्यासाठी सपोर्टशी संपर्क साधा.",
+        ta: "மன்னிக்கவும், தற்போது நான் அதிக தேவையை அனுபவிக்கிறேன். பிறகு மீண்டும் முயற்சிக்கவும் அல்லது API ஒதுக்கீடு வரம்புகளை புதுப்பிக்க ஆதரவை தொடர்பு கொள்ளவும்.",
+        te: "క్షమించండి, నేను ప్రస్తుతం అధిక డిమాండ్‌ని అనుభవిస్తున్నాను. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి లేదా API కోటా పరిమితులను నవీకరించడానికి మద్దతును సంప్రదించండి.",
+        kn: "ಕ್ಷಮಿಸಿ, ನಾನು ಪ್ರಸ್ತುತ ಹೆಚ್ಚಿನ ಬೇಡಿಕೆಯನ್ನು ಅನುಭವಿಸುತ್ತಿದ್ದೇನೆ. ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ API ಕೋಟಾ ಮಿತಿಗಳನ್ನು ನವೀಕರಿಸಲು ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ."
+      },
+      rateLimit: {
+        en: "I'm receiving too many requests right now. Please wait a moment and try again.",
+        hi: "मैं अभी बहुत सारे अनुरोध प्राप्त कर रहा हूं। कृपया एक क्षण प्रतीक्षा करें और पुनः प्रयास करें।",
+        mr: "मला सध्या खूप विनंत्या प्राप्त होत आहेत. कृपया क्षणभर थांबा आणि पुन्हा प्रयत्न करा.",
+        ta: "நான் தற்போது பல கோரிக்கைகளைப் பெறுகிறேன். சற்று நேரம் காத்திருந்து மீண்டும் முயற்சிக்கவும்.",
+        te: "నేను ప్రస్తుతం చాలా అభ్యర్థనలను స్వీకరిస్తున్నాను. దయచేసి ఒక క్షణం వేచి ఉండి మళ్లీ ప్రయత్నించండి.",
+        kn: "ನಾನು ಈಗ ಹೆಚ್ಚಿನ ವಿನಂತಿಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತಿದ್ದೇನೆ. ದಯವಿಟ್ಟು ಒಂದು ಕ್ಷಣ ಕಾಯಿರಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+      },
+      connection: {
+        en: "I'm having trouble connecting to my services. Please try again in a moment.",
+        hi: "मुझे अपनी सेवाओं से कनेक्ट करने में समस्या हो रही है। कृपया कुछ क्षण में पुनः प्रयास करें।",
+        mr: "माझ्या सेवांशी कनेक्ट करण्यात मला समस्या येत आहे. कृपया क्षणभरात पुन्हा प्रयत्न करा.",
+        ta: "என் சேவைகளுடன் இணைப்பதில் எனக்கு சிக்கல் ஏற்பட்டுள்ளது. சிறிது நேரத்தில் மீண்டும் முயற்சிக்கவும்.",
+        te: "నా సేవలకు కనెక్ట్ చేయడంలో నాకు సమస్య ఉంది. దయచేసి కొద్దిసేపు తర్వాత మళ్ళీ ప్రయత్నించండి.",
+        kn: "ನನ್ನ ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸಲು ನನಗೆ ತೊಂದರೆಯಾಗುತ್ತಿದೆ. ದಯವಿಟ್ಟು ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+      }
+    };
+    
+    // Select appropriate error message based on the language
+    const languageKey = language in errorMessages.quota ? language : 'en';
+    
     // Check if it's a quota error
     if (error?.code === 'insufficient_quota') {
-      return "Sorry, I'm currently experiencing high demand. Please try again later or contact support to update API quota limits.";
+      return errorMessages.quota[languageKey];
     }
     
     // Rate limit errors
     if (error?.status === 429) {
-      return "I'm receiving too many requests right now. Please wait a moment and try again.";
+      return errorMessages.rateLimit[languageKey];
     }
     
-    return "I'm having trouble connecting to my services. Please try again in a moment.";
+    return errorMessages.connection[languageKey];
   }
 }
 
