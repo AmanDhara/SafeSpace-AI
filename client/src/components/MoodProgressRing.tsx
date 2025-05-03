@@ -106,7 +106,7 @@ export default function MoodProgressRing({
             strokeWidth={strokeWidth}
           />
           
-          {/* Animated progress circle */}
+          {/* Animated progress circle with subtle color transitions */}
           <motion.circle
             cx={ringSize / 2}
             cy={ringSize / 2}
@@ -116,27 +116,56 @@ export default function MoodProgressRing({
             strokeDasharray={circumference}
             strokeDashoffset={animated ? strokeDashoffset : circumference - (progress / 100) * circumference}
             strokeLinecap="round"
-            initial={{ strokeDashoffset: circumference }}
-            animate={{ strokeDashoffset }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            initial={{ 
+              strokeDashoffset: circumference,
+              filter: 'brightness(0.9) saturate(0.8)'
+            }}
+            animate={{ 
+              strokeDashoffset,
+              filter: [
+                'brightness(0.9) saturate(0.8)',
+                'brightness(1.1) saturate(1.2)',
+                'brightness(1.0) saturate(1.0)'
+              ]
+            }}
+            transition={{ 
+              strokeDashoffset: { duration: 1, ease: "easeInOut" },
+              filter: { 
+                duration: 2, 
+                ease: "easeInOut",
+                repeat: animated ? Infinity : 0,
+                repeatType: "reverse",
+                repeatDelay: 2 
+              }
+            }}
             className={`stroke-current ${config.gradient ? 'bg-gradient-to-r ' + config.gradient : ''}`}
             style={{ stroke: config.color }}
           />
         </svg>
         
-        {/* Center emoji */}
-        <div
+        {/* Animated center emoji */}
+        <motion.div
           className="absolute inset-0 flex items-center justify-center text-2xl"
           style={{ fontSize: size === 'lg' ? '2rem' : size === 'md' ? '1.5rem' : '1.25rem' }}
+          animate={animated ? {
+            scale: [1, 1.1, 1],
+            rotate: [0, 5, 0, -5, 0],
+          } : {}}
+          transition={animated ? {
+            duration: 3,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 1.5
+          } : {}}
         >
           {config.emoji}
-        </div>
+        </motion.div>
       </div>
       
       {/* Label below progress ring */}
       {showLabel && (
         <div className={`mt-2 text-center font-medium ${fontSize}`}>
-          <span>{config.label}</span>
+          <span>{t(config.labelKey as any)}</span>
           <span className="ml-2 text-gray-500">{Math.round(currentProgress)}%</span>
         </div>
       )}
