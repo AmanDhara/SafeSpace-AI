@@ -205,6 +205,7 @@ export default function ChatInterface() {
               key={message.id}
               content={message.content}
               isUserMessage={message.isUserMessage}
+              language={message.language || currentLanguage}
             />
           ))}
           

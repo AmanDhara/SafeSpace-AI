@@ -1,12 +1,14 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Bot, User } from "lucide-react";
+import TextToSpeech from "@/components/TextToSpeech";
 
 interface ChatMessageProps {
   content: string;
   isUserMessage: boolean;
+  language?: string;
 }
 
-export default function ChatMessage({ content, isUserMessage }: ChatMessageProps) {
+export default function ChatMessage({ content, isUserMessage, language = "en" }: ChatMessageProps) {
   return (
     <div className={`flex items-start mb-4 ${isUserMessage ? "justify-end" : ""}`}>
       {!isUserMessage && (
@@ -25,6 +27,13 @@ export default function ChatMessage({ content, isUserMessage }: ChatMessageProps
         } p-3`}
       >
         <p className={`${isUserMessage ? "text-white" : "text-neutral-darkest"}`}>{content}</p>
+        
+        {/* Only show text-to-speech for AI responses */}
+        {!isUserMessage && (
+          <div className="mt-2 flex justify-end">
+            <TextToSpeech text={content} language={language} />
+          </div>
+        )}
       </div>
       
       {isUserMessage && (

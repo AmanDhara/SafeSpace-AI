@@ -29,65 +29,60 @@ export default function Navbar() {
     <header className="border-b border-gray-200 bg-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center">
-          <Link href="/">
-            <a className="text-xl font-bold text-blue-500 hover:text-blue-600">MindfulAI</a>
+          <Link href="/" className="text-xl font-bold text-blue-500 hover:text-blue-600">
+            MindfulAI
           </Link>
           {user && (
             <nav className="ml-8 hidden md:flex">
-              <Link href="/">
-                <a
-                  className={`ml-4 text-sm font-medium ${
-                    isActive("/") 
-                      ? "text-blue-600" 
-                      : "text-gray-700 hover:text-blue-600"
-                  }`}
-                >
-                  Home
-                </a>
+              <Link 
+                href="/" 
+                className={`ml-4 text-sm font-medium ${
+                  isActive("/") 
+                    ? "text-blue-600" 
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                Home
               </Link>
-              <Link href="/chat">
-                <a
-                  className={`ml-4 text-sm font-medium ${
-                    isActive("/chat") 
-                      ? "text-blue-600" 
-                      : "text-gray-700 hover:text-blue-600"
-                  }`}
-                >
-                  Chat
-                </a>
+              <Link 
+                href="/chat" 
+                className={`ml-4 text-sm font-medium ${
+                  isActive("/chat") 
+                    ? "text-blue-600" 
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                Chat
               </Link>
-              <Link href="/recommendations">
-                <a
-                  className={`ml-4 text-sm font-medium ${
-                    isActive("/recommendations") 
-                      ? "text-blue-600" 
-                      : "text-gray-700 hover:text-blue-600"
-                  }`}
-                >
-                  Recommendations
-                </a>
+              <Link 
+                href="/recommendations" 
+                className={`ml-4 text-sm font-medium ${
+                  isActive("/recommendations") 
+                    ? "text-blue-600" 
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                Recommendations
               </Link>
-              <Link href="/therapists">
-                <a
-                  className={`ml-4 text-sm font-medium ${
-                    isActive("/therapists") 
-                      ? "text-blue-600" 
-                      : "text-gray-700 hover:text-blue-600"
-                  }`}
-                >
-                  Therapists
-                </a>
+              <Link 
+                href="/therapists" 
+                className={`ml-4 text-sm font-medium ${
+                  isActive("/therapists") 
+                    ? "text-blue-600" 
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                Therapists
               </Link>
-              <Link href="/help-contact">
-                <a
-                  className={`ml-4 text-sm font-medium ${
-                    isActive("/help-contact") 
-                      ? "text-blue-600" 
-                      : "text-gray-700 hover:text-blue-600"
-                  }`}
-                >
-                  Help & Contact
-                </a>
+              <Link 
+                href="/help-contact" 
+                className={`ml-4 text-sm font-medium ${
+                  isActive("/help-contact") 
+                    ? "text-blue-600" 
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                Help & Contact
               </Link>
             </nav>
           )}
@@ -134,7 +129,7 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Link href="/auth">
+            <Link href="/auth" className="inline-block">
               <Button size="sm">Sign In</Button>
             </Link>
           )}
