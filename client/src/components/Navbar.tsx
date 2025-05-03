@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
+import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import {
@@ -13,6 +14,7 @@ import { Globe, User, LogOut } from "lucide-react";
 
 export default function Navbar() {
   const { user, logoutMutation } = useAuth();
+  const { currentLanguage, setLanguage, t } = useLanguage();
   const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
@@ -21,6 +23,10 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logoutMutation.mutate();
+  };
+
+  const handleLanguageChange = (langCode: string) => {
+    setLanguage(langCode);
   };
 
   const isActive = (path: string) => currentPath === path;
@@ -42,7 +48,7 @@ export default function Navbar() {
                     : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                Home
+                {t("home")}
               </Link>
               <Link 
                 href="/chat" 
@@ -52,7 +58,7 @@ export default function Navbar() {
                     : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                Chat
+                {t("chat")}
               </Link>
               <Link 
                 href="/recommendations" 
@@ -62,7 +68,7 @@ export default function Navbar() {
                     : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                Recommendations
+                {t("recommendations")}
               </Link>
               <Link 
                 href="/therapists" 
@@ -72,7 +78,7 @@ export default function Navbar() {
                     : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                Therapists
+                {t("therapists")}
               </Link>
               <Link 
                 href="/help-contact" 
@@ -82,7 +88,7 @@ export default function Navbar() {
                     : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                Help & Contact
+                {t("helpContact")}
               </Link>
             </nav>
           )}

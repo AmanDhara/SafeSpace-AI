@@ -7,6 +7,7 @@ import AuthPage from "@/pages/auth-page";
 import HomePage from "@/pages/home-page";
 import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
+import { LanguageProvider } from "./hooks/use-language";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Navbar from "@/components/Navbar";
 import Therapists from "@/pages/therapists";
@@ -30,17 +31,19 @@ function Router() {
 function App() {
   return (
     <ThemeProvider defaultTheme="light">
-      <AuthProvider>
-        <TooltipProvider>
-          <div className="min-h-screen flex flex-col bg-neutral-50/50">
-            <Navbar />
-            <main className="flex-1 pt-1">
-              <Router />
-            </main>
-          </div>
-          <Toaster />
-        </TooltipProvider>
-      </AuthProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <div className="min-h-screen flex flex-col bg-neutral-50/50">
+              <Navbar />
+              <main className="flex-1 pt-1">
+                <Router />
+              </main>
+            </div>
+            <Toaster />
+          </TooltipProvider>
+        </AuthProvider>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

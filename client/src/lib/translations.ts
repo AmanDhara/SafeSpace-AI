@@ -1,0 +1,552 @@
+export const appTranslations = {
+  en: {
+    // Navigation
+    home: "Home",
+    chat: "Chat",
+    recommendations: "Recommendations",
+    therapists: "Therapists",
+    helpContact: "Help & Contact",
+    signIn: "Sign In",
+    signUp: "Sign Up",
+    logOut: "Log Out",
+    
+    // Homepage
+    welcome: "Welcome",
+    welcomeMessage: "How are you feeling today? I'm here to listen and support your mental wellness journey.",
+    startConversation: "Start Conversation",
+    keyFeatures: "Key Features",
+    aiChatSupport: "AI Chat Support",
+    aiChatDescription: "Have meaningful conversations about your mental health with our empathetic AI assistant.",
+    voiceInteraction: "Voice Interaction",
+    voiceDescription: "Speak naturally with our AI and get voice responses for a more personal experience.",
+    multilingualSupport: "Multilingual Support",
+    multilingualDescription: "Communicate in your preferred language, including Hindi, Kannada, Telugu, and Tamil.",
+    quickAccess: "Quick Access",
+    recentConversations: "Recent Conversations",
+    recentConversationsDesc: "Continue where you left off with your recent chats.",
+    viewConversations: "View Conversations",
+    professionalHelp: "Professional Help",
+    professionalHelpDesc: "Connect with mental health professionals for personalized guidance.",
+    findTherapists: "Find Therapists",
+    
+    // Auth page
+    authWelcome: "Welcome",
+    authMessage: "Sign in to your account or create a new one",
+    login: "Sign In",
+    register: "Sign Up",
+    username: "Username",
+    password: "Password",
+    email: "Email (Optional)",
+    name: "Name (Optional)",
+    createAccount: "Create Account",
+    authHeroTitle: "Your mental wellness companion",
+    authHeroDesc: "providing personalized support and guidance in your native language.",
+    
+    // Therapists
+    therapistsTitle: "Connect with Therapists",
+    therapistsSubtitle: "Find qualified mental health professionals who speak your language and understand your needs.",
+    speaks: "Speaks:",
+    availableOn: "Available on:",
+    scheduleConsultation: "Schedule Consultation",
+    therapistHelp: "Need help choosing a therapist?",
+    therapistHelpDesc: "Our AI assistant can recommend the right therapist based on your specific needs and preferences.",
+    getRecommendations: "Get Personalized Recommendations",
+    
+    // Recommendations
+    recommendationsTitle: "Recommended Resources",
+    recommendationsDesc: "Discover books, videos, podcasts, and other resources to support your mental well-being journey.",
+    books: "Books",
+    videos: "Videos",
+    podcasts: "Podcasts",
+    music: "Music",
+    learnMore: "Learn more",
+    by: "By",
+    personalizedTitle: "Personalized Recommendations",
+    personalizedDesc: "Get resources tailored to your specific needs and interests. Our AI will analyze your preferences and suggest the most relevant books, videos, and podcasts.",
+    getPersonalResources: "Get My Personal Resources",
+    
+    // Chat Interface
+    mentalHealthSupport: "Mental Health Support",
+    typingIndicator: "AI is typing...",
+    sendMessage: "Send message",
+    listen: "Listen",
+    pause: "Pause",
+    resume: "Resume",
+    stop: "Stop",
+    
+    // Help & Contact
+    contactUs: "Contact Us",
+    contactUsDesc: "Fill out the form below and we'll get back to you as soon as possible.",
+    subject: "Subject",
+    message: "Message",
+    sendMessageButton: "Send Message",
+    contactInfo: "Contact Information",
+    contactInfoDesc: "Reach out to us directly through these channels",
+    phoneSupport: "Phone Support",
+    emailContact: "Email",
+    liveChat: "Live Chat",
+    faq: "Frequently Asked Questions",
+    viewAllFAQs: "View all FAQs"
+  },
+  
+  hi: {
+    // Navigation
+    home: "होम",
+    chat: "चैट",
+    recommendations: "सिफारिशें",
+    therapists: "चिकित्सक",
+    helpContact: "सहायता और संपर्क",
+    signIn: "साइन इन",
+    signUp: "साइन अप",
+    logOut: "लॉग आउट",
+    
+    // Homepage
+    welcome: "स्वागत है",
+    welcomeMessage: "आज आप कैसा महसूस कर रहे हैं? मैं आपकी मानसिक स्वास्थ्य यात्रा में सुनने और समर्थन करने के लिए यहां हूं।",
+    startConversation: "बातचीत शुरू करें",
+    keyFeatures: "प्रमुख विशेषताएं",
+    aiChatSupport: "एआई चैट सहायता",
+    aiChatDescription: "हमारे समझदार एआई सहायक के साथ अपने मानसिक स्वास्थ्य के बारे में सार्थक बातचीत करें।",
+    voiceInteraction: "आवाज इंटरैक्शन",
+    voiceDescription: "हमारे एआई के साथ स्वाभाविक रूप से बात करें और अधिक व्यक्तिगत अनुभव के लिए आवाज प्रतिक्रियाएं प्राप्त करें।",
+    multilingualSupport: "बहुभाषी समर्थन",
+    multilingualDescription: "अपनी पसंदीदा भाषा में संवाद करें, जिसमें हिंदी, कन्नड़, तेलुगु और तमिल शामिल हैं।",
+    quickAccess: "त्वरित पहुंच",
+    recentConversations: "हाल की बातचीत",
+    recentConversationsDesc: "अपनी हाल की चैट से जहां छोड़ा था वहां से जारी रखें।",
+    viewConversations: "बातचीत देखें",
+    professionalHelp: "पेशेवर सहायता",
+    professionalHelpDesc: "व्यक्तिगत मार्गदर्शन के लिए मानसिक स्वास्थ्य पेशेवरों से जुड़ें।",
+    findTherapists: "चिकित्सक खोजें",
+    
+    // Auth page
+    authWelcome: "स्वागत है",
+    authMessage: "अपने खाते में साइन इन करें या नया खाता बनाएं",
+    login: "साइन इन",
+    register: "साइन अप",
+    username: "उपयोगकर्ता नाम",
+    password: "पासवर्ड",
+    email: "ईमेल (वैकल्पिक)",
+    name: "नाम (वैकल्पिक)",
+    createAccount: "खाता बनाएं",
+    authHeroTitle: "आपका मानसिक स्वास्थ्य साथी",
+    authHeroDesc: "आपकी मूल भाषा में व्यक्तिगत समर्थन और मार्गदर्शन प्रदान करता है।",
+    
+    // Therapists
+    therapistsTitle: "चिकित्सकों से जुड़ें",
+    therapistsSubtitle: "ऐसे योग्य मानसिक स्वास्थ्य पेशेवर खोजें जो आपकी भाषा बोलते हैं और आपकी जरूरतों को समझते हैं।",
+    speaks: "बोलते हैं:",
+    availableOn: "उपलब्ध हैं:",
+    scheduleConsultation: "परामर्श शेड्यूल करें",
+    therapistHelp: "चिकित्सक चुनने में मदद चाहिए?",
+    therapistHelpDesc: "हमारा एआई सहायक आपकी विशिष्ट जरूरतों और प्राथमिकताओं के आधार पर सही चिकित्सक की सिफारिश कर सकता है।",
+    getRecommendations: "व्यक्तिगत सिफारिशें प्राप्त करें",
+    
+    // Recommendations
+    recommendationsTitle: "अनुशंसित संसाधन",
+    recommendationsDesc: "अपनी मानसिक भलाई यात्रा का समर्थन करने के लिए पुस्तकें, वीडियो, पॉडकास्ट और अन्य संसाधन खोजें।",
+    books: "पुस्तकें",
+    videos: "वीडियो",
+    podcasts: "पॉडकास्ट",
+    music: "संगीत",
+    learnMore: "और जानें",
+    by: "द्वारा",
+    personalizedTitle: "व्यक्तिगत सिफारिशें",
+    personalizedDesc: "अपनी विशिष्ट जरूरतों और रुचियों के अनुरूप संसाधन प्राप्त करें। हमारा एआई आपकी प्राथमिकताओं का विश्लेषण करेगा और सबसे प्रासंगिक पुस्तकों, वीडियो और पॉडकास्ट का सुझाव देगा।",
+    getPersonalResources: "मेरे व्यक्तिगत संसाधन प्राप्त करें",
+    
+    // Chat Interface
+    mentalHealthSupport: "मानसिक स्वास्थ्य सहायता",
+    typingIndicator: "एआई टाइप कर रहा है...",
+    sendMessage: "संदेश भेजें",
+    listen: "सुनें",
+    pause: "रोकें",
+    resume: "जारी रखें",
+    stop: "बंद करें",
+    
+    // Help & Contact
+    contactUs: "संपर्क करें",
+    contactUsDesc: "नीचे फॉर्म भरें और हम जल्द से जल्द आपसे संपर्क करेंगे।",
+    subject: "विषय",
+    message: "संदेश",
+    sendMessageButton: "संदेश भेजें",
+    contactInfo: "संपर्क जानकारी",
+    contactInfoDesc: "इन चैनलों के माध्यम से सीधे हमसे संपर्क करें",
+    phoneSupport: "फोन सहायता",
+    emailContact: "ईमेल",
+    liveChat: "लाइव चैट",
+    faq: "अक्सर पूछे जाने वाले प्रश्न",
+    viewAllFAQs: "सभी अक्सर पूछे जाने वाले प्रश्न देखें"
+  },
+  
+  mr: {
+    // Navigation
+    home: "होम",
+    chat: "चॅट",
+    recommendations: "शिफारसी",
+    therapists: "थेरपिस्ट",
+    helpContact: "मदत आणि संपर्क",
+    signIn: "साइन इन",
+    signUp: "साइन अप",
+    logOut: "लॉग आउट",
+    
+    // Homepage
+    welcome: "स्वागत आहे",
+    welcomeMessage: "आज आपण कसे वाटत आहात? मी तुमच्या मानसिक आरोग्य प्रवासात ऐकण्यासाठी आणि समर्थन देण्यासाठी इथे आहे.",
+    startConversation: "संभाषण सुरू करा",
+    keyFeatures: "प्रमुख वैशिष्ट्ये",
+    aiChatSupport: "एआई चॅट समर्थन",
+    aiChatDescription: "आमच्या समजदार एआई सहायकासह तुमच्या मानसिक आरोग्याबद्दल अर्थपूर्ण संभाषणे करा.",
+    voiceInteraction: "आवाज इंटरॅक्शन",
+    voiceDescription: "आमच्या एआई सोबत नैसर्गिकरित्या बोला आणि अधिक वैयक्तिक अनुभवासाठी आवाज प्रतिसाद मिळवा.",
+    multilingualSupport: "बहुभाषिक समर्थन",
+    multilingualDescription: "तुमच्या पसंतीच्या भाषेत संवाद साधा, ज्यात हिंदी, कन्नड, तेलुगू आणि तमिळ समाविष्ट आहेत.",
+    quickAccess: "जलद प्रवेश",
+    recentConversations: "अलीकडील संभाषणे",
+    recentConversationsDesc: "तुमच्या अलीकडील चॅट्समध्ये जिथे सोडले होते तिथून पुढे जा.",
+    viewConversations: "संभाषणे पहा",
+    professionalHelp: "व्यावसायिक मदत",
+    professionalHelpDesc: "वैयक्तिक मार्गदर्शनासाठी मानसिक आरोग्य व्यावसायिकांशी जोडा.",
+    findTherapists: "थेरपिस्ट शोधा",
+    
+    // Auth page
+    authWelcome: "स्वागत आहे",
+    authMessage: "तुमच्या खात्यात साइन इन करा किंवा नवीन खाते तयार करा",
+    login: "साइन इन",
+    register: "साइन अप",
+    username: "वापरकर्तानाव",
+    password: "पासवर्ड",
+    email: "ईमेल (पर्यायी)",
+    name: "नाव (पर्यायी)",
+    createAccount: "खाते तयार करा",
+    authHeroTitle: "तुमचा मानसिक आरोग्य साथीदार",
+    authHeroDesc: "तुमच्या मूळ भाषेत वैयक्तिक समर्थन आणि मार्गदर्शन प्रदान करणे.",
+    
+    // Therapists
+    therapistsTitle: "थेरपिस्टशी जोडा",
+    therapistsSubtitle: "तुमची भाषा बोलणारे आणि तुमच्या गरजा समजणारे पात्र मानसिक आरोग्य व्यावसायिक शोधा.",
+    speaks: "बोलतात:",
+    availableOn: "उपलब्ध आहेत:",
+    scheduleConsultation: "सल्लामसलत शेड्यूल करा",
+    therapistHelp: "थेरपिस्ट निवडण्यात मदत हवी आहे का?",
+    therapistHelpDesc: "आमचा एआई सहायक तुमच्या विशिष्ट गरजा आणि प्राधान्यांच्या आधारे योग्य थेरपिस्टची शिफारस करू शकतो.",
+    getRecommendations: "वैयक्तिक शिफारसी मिळवा",
+    
+    // Recommendations
+    recommendationsTitle: "शिफारस केलेले संसाधने",
+    recommendationsDesc: "तुमच्या मानसिक आरोग्य प्रवासाला समर्थन देण्यासाठी पुस्तके, व्हिडिओ, पॉडकास्ट आणि इतर संसाधने शोधा.",
+    books: "पुस्तके",
+    videos: "व्हिडिओ",
+    podcasts: "पॉडकास्ट",
+    music: "संगीत",
+    learnMore: "अधिक जाणून घ्या",
+    by: "द्वारे",
+    personalizedTitle: "वैयक्तिक शिफारसी",
+    personalizedDesc: "तुमच्या विशिष्ट गरजा आणि आवडींनुसार संसाधने मिळवा. आमचा एआई तुमच्या प्राधान्यांचे विश्लेषण करेल आणि सर्वात संबंधित पुस्तके, व्हिडिओ आणि पॉडकास्टची शिफारस करेल.",
+    getPersonalResources: "माझी वैयक्तिक संसाधने मिळवा",
+    
+    // Chat Interface
+    mentalHealthSupport: "मानसिक आरोग्य समर्थन",
+    typingIndicator: "एआई टाइप करत आहे...",
+    sendMessage: "संदेश पाठवा",
+    listen: "ऐका",
+    pause: "थांबवा",
+    resume: "पुन्हा सुरू करा",
+    stop: "थांबवा",
+    
+    // Help & Contact
+    contactUs: "संपर्क करा",
+    contactUsDesc: "खालील फॉर्म भरा आणि आम्ही शक्य तितक्या लवकर तुमच्याशी संपर्क साधू.",
+    subject: "विषय",
+    message: "संदेश",
+    sendMessageButton: "संदेश पाठवा",
+    contactInfo: "संपर्क माहिती",
+    contactInfoDesc: "या चॅनेल्सद्वारे आमच्याशी थेट संपर्क साधा",
+    phoneSupport: "फोन समर्थन",
+    emailContact: "ईमेल",
+    liveChat: "लाइव्ह चॅट",
+    faq: "वारंवार विचारले जाणारे प्रश्न",
+    viewAllFAQs: "सर्व वारंवार विचारले जाणारे प्रश्न पहा"
+  },
+  
+  ta: {
+    // Navigation
+    home: "முகப்பு",
+    chat: "அரட்டை",
+    recommendations: "பரிந்துரைகள்",
+    therapists: "மருத்துவர்கள்",
+    helpContact: "உதவி & தொடர்பு",
+    signIn: "உள்நுழை",
+    signUp: "பதிவு செய்",
+    logOut: "வெளியேறு",
+    
+    // Homepage
+    welcome: "வரவேற்கிறோம்",
+    welcomeMessage: "இன்று நீங்கள் எப்படி உணர்கிறீர்கள்? உங்கள் மனநல பயணத்தில் கேட்கவும் ஆதரிக்கவும் நான் இங்கே இருக்கிறேன்.",
+    startConversation: "உரையாடலைத் தொடங்கு",
+    keyFeatures: "முக்கிய அம்சங்கள்",
+    aiChatSupport: "AI அரட்டை ஆதரவு",
+    aiChatDescription: "எங்கள் புரிந்துகொள்ளும் AI உதவியாளருடன் உங்கள் மனநலம் பற்றி அர்த்தமுள்ள உரையாடல்களைக் கொள்ளுங்கள்.",
+    voiceInteraction: "குரல் தொடர்பு",
+    voiceDescription: "எங்கள் AI உடன் இயல்பாகப் பேசி, மேலும் தனிப்பட்ட அனுபவத்திற்காக குரல் பதில்களைப் பெறுங்கள்.",
+    multilingualSupport: "பல மொழி ஆதரவு",
+    multilingualDescription: "இந்தி, கன்னடம், தெலுங்கு மற்றும் தமிழ் உட்பட உங்கள் விருப்பமான மொழியில் தொடர்பு கொள்ளுங்கள்.",
+    quickAccess: "விரைவான அணுகல்",
+    recentConversations: "சமீபத்திய உரையாடல்கள்",
+    recentConversationsDesc: "உங்கள் சமீபத்திய அரட்டைகளில் நீங்கள் விட்ட இடத்தில் இருந்து தொடரவும்.",
+    viewConversations: "உரையாடல்களைக் காண்க",
+    professionalHelp: "தொழில்முறை உதவி",
+    professionalHelpDesc: "தனிப்பயனாக்கப்பட்ட வழிகாட்டுதலுக்காக மனநல நிபுணர்களுடன் இணையுங்கள்.",
+    findTherapists: "மருத்துவர்களைக் கண்டறி",
+    
+    // Auth page
+    authWelcome: "வரவேற்கிறோம்",
+    authMessage: "உங்கள் கணக்கில் உள்நுழையவும் அல்லது புதிய கணக்கை உருவாக்கவும்",
+    login: "உள்நுழை",
+    register: "பதிவு செய்",
+    username: "பயனர்பெயர்",
+    password: "கடவுச்சொல்",
+    email: "மின்னஞ்சல் (விருப்பத்தேர்வு)",
+    name: "பெயர் (விருப்பத்தேர்வு)",
+    createAccount: "கணக்கை உருவாக்கு",
+    authHeroTitle: "உங்கள் மனநல துணை",
+    authHeroDesc: "உங்கள் சொந்த மொழியில் தனிப்பயனாக்கப்பட்ட ஆதரவு மற்றும் வழிகாட்டுதலை வழங்குகிறது.",
+    
+    // Therapists
+    therapistsTitle: "மருத்துவர்களுடன் இணையுங்கள்",
+    therapistsSubtitle: "உங்கள் மொழியைப் பேசும் மற்றும் உங்கள் தேவைகளைப் புரிந்துகொள்ளும் தகுதிவாய்ந்த மனநல நிபுணர்களைக் கண்டறியுங்கள்.",
+    speaks: "பேசுகிறார்:",
+    availableOn: "கிடைக்கும் நாட்கள்:",
+    scheduleConsultation: "ஆலோசனை திட்டமிடு",
+    therapistHelp: "மருத்துவரை தேர்ந்தெடுக்க உதவி தேவையா?",
+    therapistHelpDesc: "எங்கள் AI உதவியாளர் உங்கள் குறிப்பிட்ட தேவைகள் மற்றும் விருப்பங்களின் அடிப்படையில் சரியான மருத்துவரை பரிந்துரைக்க முடியும்.",
+    getRecommendations: "தனிப்பயனாக்கப்பட்ட பரிந்துரைகளைப் பெறுங்கள்",
+    
+    // Recommendations
+    recommendationsTitle: "பரிந்துரைக்கப்பட்ட ஆதாரங்கள்",
+    recommendationsDesc: "உங்கள் மனநல பயணத்திற்கு ஆதரவளிக்க புத்தகங்கள், வீடியோக்கள், பாட்காஸ்ட்கள் மற்றும் பிற ஆதாரங்களைக் கண்டறியுங்கள்.",
+    books: "புத்தகங்கள்",
+    videos: "வீடியோக்கள்",
+    podcasts: "பாட்காஸ்ட்கள்",
+    music: "இசை",
+    learnMore: "மேலும் அறிய",
+    by: "மூலம்",
+    personalizedTitle: "தனிப்பயனாக்கப்பட்ட பரிந்துரைகள்",
+    personalizedDesc: "உங்கள் குறிப்பிட்ட தேவைகள் மற்றும் ஆர்வங்களுக்கு ஏற்ற ஆதாரங்களைப் பெறுங்கள். எங்கள் AI உங்கள் விருப்பங்களை பகுப்பாய்வு செய்து மிகவும் பொருத்தமான புத்தகங்கள், வீடியோக்கள் மற்றும் பாட்காஸ்ட்களை பரிந்துரைக்கும்.",
+    getPersonalResources: "எனது தனிப்பட்ட ஆதாரங்களைப் பெறுங்கள்",
+    
+    // Chat Interface
+    mentalHealthSupport: "மனநல ஆதரவு",
+    typingIndicator: "AI தட்டச்சு செய்கிறது...",
+    sendMessage: "செய்தி அனுப்பு",
+    listen: "கேள்",
+    pause: "இடைநிறுத்து",
+    resume: "தொடர்",
+    stop: "நிறுத்து",
+    
+    // Help & Contact
+    contactUs: "எங்களை தொடர்பு கொள்ள",
+    contactUsDesc: "கீழே உள்ள படிவத்தை நிரப்பவும், நாங்கள் விரைவில் உங்களைத் தொடர்பு கொள்வோம்.",
+    subject: "தலைப்பு",
+    message: "செய்தி",
+    sendMessageButton: "செய்தி அனுப்பு",
+    contactInfo: "தொடர்பு தகவல்",
+    contactInfoDesc: "இந்த சேனல்கள் மூலம் நேரடியாக எங்களை தொடர்பு கொள்ளவும்",
+    phoneSupport: "தொலைபேசி ஆதரவு",
+    emailContact: "மின்னஞ்சல்",
+    liveChat: "நேரடி அரட்டை",
+    faq: "அடிக்கடி கேட்கப்படும் கேள்விகள்",
+    viewAllFAQs: "அனைத்து அடிக்கடி கேட்கப்படும் கேள்விகளையும் காண்க"
+  },
+  
+  te: {
+    // Navigation
+    home: "హోమ్",
+    chat: "చాట్",
+    recommendations: "సిఫార్సులు",
+    therapists: "థెరపిస్టులు",
+    helpContact: "సహాయం & సంప్రదింపు",
+    signIn: "సైన్ ఇన్",
+    signUp: "సైన్ అప్",
+    logOut: "లాగ్ అవుట్",
+    
+    // Homepage
+    welcome: "స్వాగతం",
+    welcomeMessage: "ఈరోజు మీరు ఎలా అనుభూతి చెందుతున్నారు? మీ మానసిక ఆరోగ్య ప్రయాణంలో వినడానికి మరియు మద్దతు ఇవ్వడానికి నేను ఇక్కడ ఉన్నాను.",
+    startConversation: "సంభాషణ ప్రారంభించండి",
+    keyFeatures: "ప్రధాన లక్షణాలు",
+    aiChatSupport: "AI చాట్ మద్దతు",
+    aiChatDescription: "మా సహానుభూతితో కూడిన AI సహాయకుడితో మీ మానసిక ఆరోగ్యం గురించి అర్థవంతమైన సంభాషణలు చేయండి.",
+    voiceInteraction: "వాయిస్ ఇంటరాక్షన్",
+    voiceDescription: "మా AI తో సహజంగా మాట్లాడండి మరియు మరింత వ్యక్తిగత అనుభవం కోసం వాయిస్ ప్రతిస్పందనలను పొందండి.",
+    multilingualSupport: "బహుభాషా మద్దతు",
+    multilingualDescription: "హిందీ, కన్నడ, తెలుగు మరియు తమిళం సహా మీ ఇష్టమైన భాషలో కమ్యూనికేట్ చేయండి.",
+    quickAccess: "త్వరిత ప్రాప్తి",
+    recentConversations: "ఇటీవలి సంభాషణలు",
+    recentConversationsDesc: "మీరు మీ ఇటీవలి చాట్లలో వదిలిన చోట నుండి కొనసాగించండి.",
+    viewConversations: "సంభాషణలను చూడండి",
+    professionalHelp: "ప్రొఫెషనల్ సహాయం",
+    professionalHelpDesc: "వ్యక్తిగతీకరించిన మార్గదర్శకత్వం కోసం మానసిక ఆరోగ్య నిపుణులతో అనుసంధానించండి.",
+    findTherapists: "థెరపిస్టులను కనుగొనండి",
+    
+    // Auth page
+    authWelcome: "స్వాగతం",
+    authMessage: "మీ ఖాతాకు సైన్ ఇన్ చేయండి లేదా కొత్తదాన్ని సృష్టించండి",
+    login: "సైన్ ఇన్",
+    register: "సైన్ అప్",
+    username: "వినియోగదారు పేరు",
+    password: "పాస్వర్డ్",
+    email: "ఇమెయిల్ (ఐచ్ఛికం)",
+    name: "పేరు (ఐచ్ఛికం)",
+    createAccount: "ఖాతా సృష్టించండి",
+    authHeroTitle: "మీ మానసిక ఆరోగ్య భాగస్వామి",
+    authHeroDesc: "మీ స్వంత భాషలో వ్యక్తిగతీకరించిన మద్దతు మరియు మార్గదర్శకత్వాన్ని అందిస్తుంది.",
+    
+    // Therapists
+    therapistsTitle: "థెరపిస్టులతో కనెక్ట్ అవ్వండి",
+    therapistsSubtitle: "మీ భాష మాట్లాడే మరియు మీ అవసరాలను అర్థం చేసుకునే అర్హత గల మానసిక ఆరోగ్య నిపుణులను కనుగొనండి.",
+    speaks: "మాట్లాడే భాషలు:",
+    availableOn: "అందుబాటులో ఉన్న రోజులు:",
+    scheduleConsultation: "కన్సల్టేషన్ షెడ్యూల్ చేయండి",
+    therapistHelp: "థెరపిస్ట్ని ఎంచుకోవడంలో సహాయం కావాలా?",
+    therapistHelpDesc: "మా AI సహాయకుడు మీ నిర్దిష్ట అవసరాలు మరియు ప్రాధాన్యతల ఆధారంగా సరైన థెరపిస్ట్ని సిఫార్సు చేయగలడు.",
+    getRecommendations: "వ్యక్తిగతీకరించిన సిఫార్సులను పొందండి",
+    
+    // Recommendations
+    recommendationsTitle: "సిఫార్సు చేసిన వనరులు",
+    recommendationsDesc: "మీ మానసిక ఆరోగ్య ప్రయాణానికి మద్దతు ఇవ్వడానికి పుస్తకాలు, వీడియోలు, పాడ్కాస్ట్లు మరియు ఇతర వనరులను కనుగొనండి.",
+    books: "పుస్తకాలు",
+    videos: "వీడియోలు",
+    podcasts: "పాడ్కాస్ట్లు",
+    music: "సంగీతం",
+    learnMore: "మరింత తెలుసుకోండి",
+    by: "ద్వారా",
+    personalizedTitle: "వ్యక్తిగతీకరించిన సిఫార్సులు",
+    personalizedDesc: "మీ నిర్దిష్ట అవసరాలు మరియు ఆసక్తులకు తగిన వనరులను పొందండి. మా AI మీ ప్రాధాన్యతలను విశ్లేషించి అత్యంత సంబంధిత పుస్తకాలు, వీడియోలు మరియు పాడ్కాస్ట్లను సూచిస్తుంది.",
+    getPersonalResources: "నా వ్యక్తిగత వనరులను పొందండి",
+    
+    // Chat Interface
+    mentalHealthSupport: "మానసిక ఆరోగ్య మద్దతు",
+    typingIndicator: "AI టైప్ చేస్తోంది...",
+    sendMessage: "సందేశం పంపు",
+    listen: "వినండి",
+    pause: "పాజ్",
+    resume: "పునఃప్రారంభం",
+    stop: "ఆపు",
+    
+    // Help & Contact
+    contactUs: "మమ్మల్ని సంప్రదించండి",
+    contactUsDesc: "క్రింది ఫారమ్‌ను పూర్తి చేయండి మరియు మేము వీలైనంత త్వరగా మీకు తిరిగి అందిస్తాము.",
+    subject: "విషయం",
+    message: "సందేశం",
+    sendMessageButton: "సందేశం పంపు",
+    contactInfo: "సంప్రదింపు సమాచారం",
+    contactInfoDesc: "ఈ ఛానెల్‌ల ద్వారా నేరుగా మమ్మల్ని సంప్రదించండి",
+    phoneSupport: "ఫోన్ మద్దతు",
+    emailContact: "ఇమెయిల్",
+    liveChat: "లైవ్ చాట్",
+    faq: "తరచుగా అడిగే ప్రశ్నలు",
+    viewAllFAQs: "అన్ని తరచుగా అడిగే ప్రశ్నలను చూడండి"
+  },
+  
+  kn: {
+    // Navigation
+    home: "ಹೋಮ್",
+    chat: "ಚಾಟ್",
+    recommendations: "ಶಿಫಾರಸುಗಳು",
+    therapists: "ಥೆರಪಿಸ್ಟ್‌ಗಳು",
+    helpContact: "ಸಹಾಯ & ಸಂಪರ್ಕ",
+    signIn: "ಸೈನ್ ಇನ್",
+    signUp: "ಸೈನ್ ಅಪ್",
+    logOut: "ಲಾಗ್ ಔಟ್",
+    
+    // Homepage
+    welcome: "ಸ್ವಾಗತ",
+    welcomeMessage: "ಇಂದು ನೀವು ಹೇಗೆ ಭಾವಿಸುತ್ತಿದ್ದೀರಿ? ನಿಮ್ಮ ಮಾನಸಿಕ ಆರೋಗ್ಯ ಪಯಣದಲ್ಲಿ ಆಲಿಸಲು ಮತ್ತು ಬೆಂಬಲಿಸಲು ನಾನು ಇಲ್ಲಿದ್ದೇನೆ.",
+    startConversation: "ಸಂಭಾಷಣೆ ಪ್ರಾರಂಭಿಸಿ",
+    keyFeatures: "ಪ್ರಮುಖ ವೈಶಿಷ್ಟ್ಯಗಳು",
+    aiChatSupport: "AI ಚಾಟ್ ಬೆಂಬಲ",
+    aiChatDescription: "ನಮ್ಮ ಸಹಾನುಭೂತಿಯುಳ್ಳ AI ಸಹಾಯಕನೊಂದಿಗೆ ನಿಮ್ಮ ಮಾನಸಿಕ ಆರೋಗ್ಯದ ಬಗ್ಗೆ ಅರ್ಥಪೂರ್ಣ ಸಂಭಾಷಣೆಗಳನ್ನು ನಡೆಸಿ.",
+    voiceInteraction: "ಧ್ವನಿ ಸಂವಹನ",
+    voiceDescription: "ನಮ್ಮ AI ಯೊಂದಿಗೆ ಸಹಜವಾಗಿ ಮಾತನಾಡಿ ಮತ್ತು ಹೆಚ್ಚು ವೈಯಕ್ತಿಕ ಅನುಭವಕ್ಕಾಗಿ ಧ್ವನಿ ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಪಡೆಯಿರಿ.",
+    multilingualSupport: "ಬಹುಭಾಷಾ ಬೆಂಬಲ",
+    multilingualDescription: "ಹಿಂದಿ, ಕನ್ನಡ, ತೆಲುಗು ಮತ್ತು ತಮಿಳು ಸೇರಿದಂತೆ ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಯಲ್ಲಿ ಸಂವಹನ ನಡೆಸಿ.",
+    quickAccess: "ತ್ವರಿತ ಪ್ರವೇಶ",
+    recentConversations: "ಇತ್ತೀಚಿನ ಸಂಭಾಷಣೆಗಳು",
+    recentConversationsDesc: "ನಿಮ್ಮ ಇತ್ತೀಚಿನ ಚಾಟ್‌ಗಳಲ್ಲಿ ನೀವು ಬಿಟ್ಟ ಸ್ಥಳದಿಂದ ಮುಂದುವರಿಸಿ.",
+    viewConversations: "ಸಂಭಾಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+    professionalHelp: "ವೃತ್ತಿಪರ ಸಹಾಯ",
+    professionalHelpDesc: "ವೈಯಕ್ತಿಕ ಮಾರ್ಗದರ್ಶನಕ್ಕಾಗಿ ಮಾನಸಿಕ ಆರೋಗ್ಯ ತಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+    findTherapists: "ಥೆರಪಿಸ್ಟ್‌ಗಳನ್ನು ಹುಡುಕಿ",
+    
+    // Auth page
+    authWelcome: "ಸ್ವಾಗತ",
+    authMessage: "ನಿಮ್ಮ ಖಾತೆಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ ಅಥವಾ ಹೊಸದನ್ನು ರಚಿಸಿ",
+    login: "ಸೈನ್ ಇನ್",
+    register: "ಸೈನ್ ಅಪ್",
+    username: "ಬಳಕೆದಾರ ಹೆಸರು",
+    password: "ಪಾಸ್‌ವರ್ಡ್",
+    email: "ಇಮೇಲ್ (ಐಚ್ಛಿಕ)",
+    name: "ಹೆಸರು (ಐಚ್ಛಿಕ)",
+    createAccount: "ಖಾತೆ ರಚಿಸಿ",
+    authHeroTitle: "ನಿಮ್ಮ ಮಾನಸಿಕ ಆರೋಗ್ಯ ಸಂಗಾತಿ",
+    authHeroDesc: "ನಿಮ್ಮ ಸ್ವಂತ ಭಾಷೆಯಲ್ಲಿ ವೈಯಕ್ತಿಕ ಬೆಂಬಲ ಮತ್ತು ಮಾರ್ಗದರ್ಶನವನ್ನು ಒದಗಿಸುತ್ತದೆ.",
+    
+    // Therapists
+    therapistsTitle: "ಥೆರಪಿಸ್ಟ್‌ಗಳನ್ನು ಸಂಪರ್ಕಿಸಿ",
+    therapistsSubtitle: "ನಿಮ್ಮ ಭಾಷೆಯನ್ನು ಮಾತನಾಡುವ ಮತ್ತು ನಿಮ್ಮ ಅಗತ್ಯಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವ ಅರ್ಹ ಮಾನಸಿಕ ಆರೋಗ್ಯ ತಜ್ಞರನ್ನು ಹುಡುಕಿ.",
+    speaks: "ಮಾತನಾಡುವ ಭಾಷೆಗಳು:",
+    availableOn: "ಲಭ್ಯವಿರುವ ದಿನಗಳು:",
+    scheduleConsultation: "ಸಮಾಲೋಚನೆ ಶೆಡ್ಯೂಲ್ ಮಾಡಿ",
+    therapistHelp: "ಥೆರಪಿಸ್ಟ್ ಆಯ್ಕೆ ಮಾಡಲು ಸಹಾಯ ಬೇಕೇ?",
+    therapistHelpDesc: "ನಮ್ಮ AI ಸಹಾಯಕ ನಿಮ್ಮ ನಿರ್ದಿಷ್ಟ ಅಗತ್ಯಗಳು ಮತ್ತು ಆದ್ಯತೆಗಳ ಆಧಾರದ ಮೇಲೆ ಸರಿಯಾದ ಥೆರಪಿಸ್ಟ್ ಅನ್ನು ಶಿಫಾರಸು ಮಾಡಬಹುದು.",
+    getRecommendations: "ವೈಯಕ್ತಿಕಗೊಳಿಸಿದ ಶಿಫಾರಸುಗಳನ್ನು ಪಡೆಯಿರಿ",
+    
+    // Recommendations
+    recommendationsTitle: "ಶಿಫಾರಸು ಮಾಡಿದ ಸಂಪನ್ಮೂಲಗಳು",
+    recommendationsDesc: "ನಿಮ್ಮ ಮಾನಸಿಕ ಯೋಗಕ್ಷೇಮ ಪಯಣಕ್ಕೆ ಬೆಂಬಲ ನೀಡಲು ಪುಸ್ತಕಗಳು, ವೀಡಿಯೊಗಳು, ಪಾಡ್‌ಕಾಸ್ಟ್‌ಗಳು ಮತ್ತು ಇತರ ಸಂಪನ್ಮೂಲಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.",
+    books: "ಪುಸ್ತಕಗಳು",
+    videos: "ವೀಡಿಯೊಗಳು",
+    podcasts: "ಪಾಡ್‌ಕಾಸ್ಟ್‌ಗಳು",
+    music: "ಸಂಗೀತ",
+    learnMore: "ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ",
+    by: "ಮೂಲಕ",
+    personalizedTitle: "ವೈಯಕ್ತಿಕಗೊಳಿಸಿದ ಶಿಫಾರಸುಗಳು",
+    personalizedDesc: "ನಿಮ್ಮ ನಿರ್ದಿಷ್ಟ ಅಗತ್ಯಗಳು ಮತ್ತು ಆಸಕ್ತಿಗಳಿಗೆ ಹೊಂದಿಕೊಳ್ಳುವ ಸಂಪನ್ಮೂಲಗಳನ್ನು ಪಡೆಯಿರಿ. ನಮ್ಮ AI ನಿಮ್ಮ ಆದ್ಯತೆಗಳನ್ನು ವಿಶ್ಲೇಷಿಸುತ್ತದೆ ಮತ್ತು ಅತ್ಯಂತ ಸಂಬಂಧಿತ ಪುಸ್ತಕಗಳು, ವೀಡಿಯೊಗಳು ಮತ್ತು ಪಾಡ್‌ಕಾಸ್ಟ್‌ಗಳನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
+    getPersonalResources: "ನನ್ನ ವೈಯಕ್ತಿಕ ಸಂಪನ್ಮೂಲಗಳನ್ನು ಪಡೆಯಿರಿ",
+    
+    // Chat Interface
+    mentalHealthSupport: "ಮಾನಸಿಕ ಆರೋಗ್ಯ ಬೆಂಬಲ",
+    typingIndicator: "AI ಟೈಪ್ ಮಾಡುತ್ತಿದೆ...",
+    sendMessage: "ಸಂದೇಶ ಕಳುಹಿಸಿ",
+    listen: "ಆಲಿಸಿ",
+    pause: "ವಿರಾಮ",
+    resume: "ಮುಂದುವರಿಸಿ",
+    stop: "ನಿಲ್ಲಿಸಿ",
+    
+    // Help & Contact
+    contactUs: "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
+    contactUsDesc: "ಕೆಳಗಿನ ಫಾರ್ಮ್ ಅನ್ನು ಭರ್ತಿ ಮಾಡಿ ಮತ್ತು ನಾವು ಸಾಧ್ಯವಾದಷ್ಟು ಬೇಗ ನಿಮಗೆ ಮರುಸಂಪರ್ಕ ಸಾಧಿಸುತ್ತೇವೆ.",
+    subject: "ವಿಷಯ",
+    message: "ಸಂದೇಶ",
+    sendMessageButton: "ಸಂದೇಶ ಕಳುಹಿಸಿ",
+    contactInfo: "ಸಂಪರ್ಕ ಮಾಹಿತಿ",
+    contactInfoDesc: "ಈ ಚಾನೆಲ್‌ಗಳ ಮೂಲಕ ನಮ್ಮನ್ನು ನೇರವಾಗಿ ಸಂಪರ್ಕಿಸಿ",
+    phoneSupport: "ಫೋನ್ ಬೆಂಬಲ",
+    emailContact: "ಇಮೇಲ್",
+    liveChat: "ಲೈವ್ ಚಾಟ್",
+    faq: "ಪದೇ ಪದೇ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು",
+    viewAllFAQs: "ಎಲ್ಲಾ ಪದೇ ಪದೇ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+  }
+};
+
+// Function to get text in the current language
+export function getText(key: keyof typeof appTranslations.en, lang = 'en') {
+  const translations = appTranslations[lang as keyof typeof appTranslations] || appTranslations.en;
+  return translations[key as keyof typeof translations] || appTranslations.en[key];
+}
+
+// Function to get all translations for a language
+export function getAllTranslations(lang = 'en'): typeof appTranslations.en {
+  return appTranslations[lang as keyof typeof appTranslations] || appTranslations.en;
+}
