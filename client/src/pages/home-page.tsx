@@ -1,13 +1,16 @@
 import { useAuth } from "@/hooks/use-auth";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, Volume2, Languages, BarChart } from "lucide-react";
+import { MessageSquare, Volume2, Languages, BarChart, Palette } from "lucide-react";
 import MoodTracker from "@/components/MoodTracker";
+import MoodColorGuide from "@/components/MoodColorGuide";
 import { useLanguage } from "@/hooks/use-language";
+import { useState } from "react";
 
 export default function HomePage() {
   const { user } = useAuth();
   const { t } = useLanguage();
+  const [showColorGuide, setShowColorGuide] = useState(false);
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -53,8 +56,29 @@ export default function HomePage() {
       </div>
 
       {/* Mood Tracker Section */}
-      <div className="mb-12">
+      <div className="mb-8">
         <MoodTracker className="shadow-sm" />
+      </div>
+
+      {/* Mood Color Psychology Section */}
+      <div className="mb-12">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-bold">Color Psychology</h2>
+          <Button 
+            variant="outline" 
+            className="flex items-center gap-2"
+            onClick={() => setShowColorGuide(!showColorGuide)}
+          >
+            <Palette className="h-4 w-4" />
+            {showColorGuide ? "Hide Color Guide" : "Show Color Guide"}
+          </Button>
+        </div>
+        
+        {showColorGuide && (
+          <div className="mt-4 animate-in fade-in-50 duration-300">
+            <MoodColorGuide />
+          </div>
+        )}
       </div>
 
       {/* Key Features Section */}
