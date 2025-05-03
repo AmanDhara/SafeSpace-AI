@@ -61,6 +61,16 @@ export default function Navbar() {
                 {t("chat")}
               </Link>
               <Link 
+                href="/topics" 
+                className={`ml-4 text-sm font-medium ${
+                  currentPath.startsWith("/topics")
+                    ? "text-blue-600" 
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                Topics
+              </Link>
+              <Link 
                 href="/recommendations" 
                 className={`ml-4 text-sm font-medium ${
                   isActive("/recommendations") 

@@ -3,6 +3,7 @@ export const appTranslations = {
     // Navigation
     home: "Home",
     chat: "Chat",
+    topics: "Topics",
     recommendations: "Recommendations",
     therapists: "Therapists",
     helpContact: "Help & Contact",
@@ -106,6 +107,7 @@ export const appTranslations = {
     // Navigation
     home: "होम",
     chat: "चैट",
+    topics: "विषय",
     recommendations: "सिफारिशें",
     therapists: "चिकित्सक",
     helpContact: "सहायता और संपर्क",
@@ -196,6 +198,7 @@ export const appTranslations = {
     // Navigation
     home: "होम",
     chat: "चॅट",
+    topics: "विषय",
     recommendations: "शिफारसी",
     therapists: "थेरपिस्ट",
     helpContact: "मदत आणि संपर्क",
@@ -286,6 +289,7 @@ export const appTranslations = {
     // Navigation
     home: "முகப்பு",
     chat: "அரட்டை",
+    topics: "தலைப்புகள்",
     recommendations: "பரிந்துரைகள்",
     therapists: "மருத்துவர்கள்",
     helpContact: "உதவி & தொடர்பு",
@@ -376,6 +380,7 @@ export const appTranslations = {
     // Navigation
     home: "హోమ్",
     chat: "చాట్",
+    topics: "విషయాలు",
     recommendations: "సిఫార్సులు",
     therapists: "థెరపిస్టులు",
     helpContact: "సహాయం & సంప్రదింపు",
@@ -466,6 +471,7 @@ export const appTranslations = {
     // Navigation
     home: "ಹೋಮ್",
     chat: "ಚಾಟ್",
+    topics: "ವಿಷಯಗಳು",
     recommendations: "ಶಿಫಾರಸುಗಳು",
     therapists: "ಥೆರಪಿಸ್ಟ್‌ಗಳು",
     helpContact: "ಸಹಾಯ & ಸಂಪರ್ಕ",
