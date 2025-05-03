@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, BookOpen, Youtube, Headphones, Bookmark, Music, Wind } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import VideoGuide from "@/components/VideoGuide";
+import SpotifyPlaylist from "@/components/SpotifyPlaylist";
 
 export default function Recommendations() {
   const { t, currentLanguage } = useLanguage();
@@ -39,33 +41,33 @@ export default function Recommendations() {
     }
   ];
 
-  // Breathing exercises and meditation videos
+  // Breathing exercises and meditation videos with properly formatted YouTube embed URLs
   const breathingExercises = [
     {
       title: "4-7-8 Breathing Technique",
       description: "A simple breathing exercise to reduce anxiety and help sleep better.",
-      youtubeUrl: "https://www.youtube.com/embed/PmBYdfv5RSk",
+      youtubeUrl: "https://www.youtube.com/embed/PmBYdfv5RSk?rel=0&modestbranding=1",
       duration: "5:28",
       benefits: ["Anxiety Relief", "Better Sleep", "Stress Reduction"]
     },
     {
       title: "Box Breathing Exercise",
       description: "A technique used by Navy SEALs to control stress and improve concentration.",
-      youtubeUrl: "https://www.youtube.com/embed/tEmt1Znux58",
+      youtubeUrl: "https://www.youtube.com/embed/tEmt1Znux58?rel=0&modestbranding=1",
       duration: "4:12",
       benefits: ["Focus", "Stress Management", "Concentration"]
     },
     {
       title: "Guided Meditation for Anxiety",
       description: "A gentle 10-minute guided meditation to reduce anxiety and calm the mind.",
-      youtubeUrl: "https://www.youtube.com/embed/O-6f5wQXSu8",
+      youtubeUrl: "https://www.youtube.com/embed/O-6f5wQXSu8?rel=0&modestbranding=1",
       duration: "10:13",
       benefits: ["Anxiety Relief", "Mindfulness", "Relaxation"]
     },
     {
       title: "Progressive Muscle Relaxation",
       description: "Learn to relax your body and mind by progressively releasing tension.",
-      youtubeUrl: "https://www.youtube.com/embed/86HUcX8ZtAk",
+      youtubeUrl: "https://www.youtube.com/embed/86HUcX8ZtAk?rel=0&modestbranding=1",
       duration: "15:22",
       benefits: ["Physical Relaxation", "Stress Relief", "Sleep Improvement"]
     }
@@ -208,39 +210,15 @@ export default function Recommendations() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {musicPlaylists.map((playlist, index) => (
-              <Card key={index} className="overflow-hidden">
-                <div className="flex flex-col md:flex-row">
-                  <div className="md:w-1/3">
-                    <img 
-                      src={playlist.imageUrl} 
-                      alt={playlist.title} 
-                      className="w-full h-auto object-cover md:h-full"
-                    />
-                  </div>
-                  <div className="md:w-2/3 p-4">
-                    <h3 className="font-semibold text-lg mb-2">{playlist.title}</h3>
-                    <p className="text-sm text-gray-600 mb-3">{playlist.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {playlist.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary">{tag}</Badge>
-                      ))}
-                    </div>
-                    <a 
-                      href={playlist.spotifyUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-block"
-                    >
-                      <Button className="w-full">
-                        <span>{t("listenOnSpotify")}</span>
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              </Card>
+              <SpotifyPlaylist 
+                key={index}
+                title={playlist.title}
+                description={playlist.description}
+                spotifyUrl={playlist.spotifyUrl}
+                tags={playlist.tags}
+              />
             ))}
           </div>
         </TabsContent>
@@ -258,30 +236,14 @@ export default function Recommendations() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {breathingExercises.map((exercise, index) => (
-              <Card key={index} className="overflow-hidden flex flex-col">
-                <div className="aspect-video w-full">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={exercise.youtubeUrl}
-                    title={exercise.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
-                </div>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold text-lg mb-2">{exercise.title}</h3>
-                  <div className="text-sm text-gray-500 mb-2">{exercise.duration}</div>
-                  <p className="text-sm text-gray-600 mb-4">{exercise.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {exercise.benefits.map((benefit) => (
-                      <Badge key={benefit} variant="outline" className="bg-blue-50">{benefit}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <VideoGuide
+                key={index}
+                title={exercise.title}
+                description={exercise.description}
+                youtubeUrl={exercise.youtubeUrl}
+                duration={exercise.duration}
+                benefits={exercise.benefits}
+              />
             ))}
           </div>
         </TabsContent>
